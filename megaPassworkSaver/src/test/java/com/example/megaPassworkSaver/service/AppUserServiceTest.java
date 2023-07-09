@@ -19,7 +19,19 @@ class AppUserServiceTest {
 
     @BeforeEach
     void setUp() {
+    appUserRequest1 = new AppUserRequest();
 
+    appUserRequest1.setUserName("boneshaker");
+    appUserRequest1.setEmailAddress("boneshaker@gmail.com");
+    appUserRequest2 = new AppUserRequest();
+
+    appUserRequest2.setEmailAddress("samuelshola14@gmail.com");
+    appUserRequest2.setUserName("samuelshola14");
+
+    appUserRequest3 = new AppUserRequest();
+
+    appUserRequest3.setUserName("marthins");
+    appUserRequest3.setEmailAddress("marthins4@gmail.com");
 
     }
 }
