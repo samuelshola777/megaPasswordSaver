@@ -12,7 +12,7 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @OneToMany()
+    @OneToMany( cascade = CascadeType.ALL, mappedBy = "churchBranch", orphanRemoval = true)
     private final Set<Password> listOfPasswords;
     private String userName;
     private String unlockPassword;
