@@ -21,5 +21,7 @@ public class Password {
     private AppUser appUser;
     private LocalDateTime createdAt;
     private LocalDateTime LastUpdatedAt;
+    private String password;
+    private String passwordLabel;
 
 }

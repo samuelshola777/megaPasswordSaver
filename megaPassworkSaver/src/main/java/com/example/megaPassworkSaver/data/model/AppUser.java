@@ -23,5 +23,4 @@ public class AppUser {
     private String unlockPassword;
     private String emailAddress;
 
-
 }
