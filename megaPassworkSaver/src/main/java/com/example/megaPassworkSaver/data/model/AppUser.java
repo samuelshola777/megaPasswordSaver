@@ -21,6 +21,7 @@ public class AppUser {
     private  Set<Password> listOfPasswords;
     private String userName;
     private String unlockPassword;
+    private String emailAddress;
 
 
 }
