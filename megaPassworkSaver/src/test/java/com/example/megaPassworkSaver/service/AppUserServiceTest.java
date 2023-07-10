@@ -5,6 +5,7 @@ import jakarta.annotation.Nonnull;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -43,6 +44,18 @@ class AppUserServiceTest {
     appUserRequest3.setMainAnswer("garri");
     appUserRequest3.setMainQuestion("2");
     appUserRequest3.setUnlockPassword("ubuntu");
+    }
+
+
+    @Test
+    void testThatApUserCanRegister(){
+
+        assertNotNull(appUserService.registerNewUser(appUserRequest1));
+        assertNotNull(appUserService.registerNewUser(appUserRequest2));
+        assertNotNull(appUserService.registerNewUser(appUserRequest3));
+
+
 
     }
+
 }
