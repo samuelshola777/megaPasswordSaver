@@ -31,12 +31,18 @@ class AppUserServiceTest {
     appUserRequest2 = new AppUserRequest();
     appUserRequest2.setEmailAddress("samuelshola14@gmail.com");
     appUserRequest2.setUserName("samuelshola14");
+    appUserRequest2.setUnlockPassword("ola14");
+    appUserRequest2.setMainQuestion("6");
+    appUserRequest2.setMainAnswer("joy");
 
 
     appUserRequest3 = new AppUserRequest();
 
     appUserRequest3.setUserName("marthins");
     appUserRequest3.setEmailAddress("marthins4@gmail.com");
+    appUserRequest3.setMainAnswer("garri");
+    appUserRequest3.setMainQuestion("2");
+    appUserRequest3.setUnlockPassword("ubuntu");
 
     }
 }
