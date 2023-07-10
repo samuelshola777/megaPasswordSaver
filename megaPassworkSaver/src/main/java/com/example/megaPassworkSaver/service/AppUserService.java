@@ -1,11 +1,12 @@
 package com.example.megaPassworkSaver.service;
 
 import com.example.megaPassworkSaver.dto.request.AppUserRequest;
+import com.example.megaPassworkSaver.dto.response.AppUserResponse;
 import org.springframework.stereotype.Service;
 
 
 public interface AppUserService {
 
 
-    Object registerNewUser(AppUserRequest appUserRequest3);
+    AppUserResponse registerNewUser(AppUserRequest appUserRequest3);
 }

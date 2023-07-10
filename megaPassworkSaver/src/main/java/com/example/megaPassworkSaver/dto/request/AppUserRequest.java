@@ -13,4 +13,5 @@ public class AppUserRequest {
     private String mainQuestion;
     private String mainAnswer;
     private String unlockPassword;
+    private int numberOfPasswords;
 }

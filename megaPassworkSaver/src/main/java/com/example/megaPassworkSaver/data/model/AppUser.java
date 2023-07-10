@@ -25,5 +25,5 @@ public class AppUser {
     private String emailAddress;
     private String mainQuestion;
     private String mainAnswer;
-private int numberOfPasswords = listOfPasswords.size();
+private  int numberOfPasswords = listOfPasswords.size();
 }
