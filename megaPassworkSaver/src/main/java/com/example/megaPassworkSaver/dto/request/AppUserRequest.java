@@ -12,4 +12,5 @@ public class AppUserRequest {
     private String emailAddress;
     private String mainQuestion;
     private String mainAnswer;
+    private String unlockPassword;
 }
