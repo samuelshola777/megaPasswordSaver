@@ -21,4 +21,8 @@ public class AppUserServiceImpl implements AppUserService {
        if (!appUserRepository.findByEmailAddress(emailAddress)) throw new EmailAlreadyExistException("email already Exist");
 
     }
+    private void passwordVerifier(String password) {
+
+    }
+
 }
