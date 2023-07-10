@@ -23,5 +23,7 @@ public class AppUser {
     private String userName;
     private String unlockPassword;
     private String emailAddress;
+    private String mainQuestion;
+    private String mainAnswer;
 
 }
