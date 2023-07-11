@@ -1,6 +1,8 @@
 package com.example.megaPassworkSaver.data.appConfig;
 
 import facebook4j.conf.ConfigurationBuilder;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
@@ -9,8 +11,8 @@ import org.springframework.stereotype.Component;
 public class FacebookClientConfig {
 
 
-
-    private static final String FACEBOOK_APP_ID ;
+@Value("${facebook_app_id}")
+    private  String FACEBOOK_APP_ID ;
     private static final String APP_SECRET = "YOUR_APP_SECRET";
     private static final String ACCESS_TOKEN = "YOUR_ACCESS_TOKEN";
 
