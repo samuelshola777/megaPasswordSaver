@@ -16,16 +16,18 @@ public class FacebookClientConfig {
 
     @Value("${facebook_app_secret}")
     private static  String FACEBOOK_APP_SECRET ;
-    private static final String ACCESS_TOKEN = "YOUR_ACCESS_TOKEN";
+    @Value("${facebook_app_access_token}")
+    private static  String ACCESS_TOKEN;
 
-    public static Configuration getConfiguration() {
+    public static ConfigurationBuilder getConfiguration() {
         ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
         configurationBuilder.setOAuthAppId(FACEBOOK_APP_ID);
         configurationBuilder.setOAuthAppSecret(FACEBOOK_APP_SECRET);
         configurationBuilder.setOAuthAccessToken(ACCESS_TOKEN);
         configurationBuilder.setUseSSL(true);
         configurationBuilder.setJSONStoreEnabled(true);
-        return configurationBuilder.build();
+        configurationBuilder.build();
+        return configurationBuilder;
     }
 
 
