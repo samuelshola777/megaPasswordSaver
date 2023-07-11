@@ -21,7 +21,9 @@ public class FacebookServiceImpl implements FacebookService {
 
   try {
    facebook.postStatusMessage(post.getMessage());
-   PostUpdate postUpdate = new PostUpdate();
+   PostUpdate postUpdate = new PostUpdate("https://graph.facebook.com/me/feed");
+   postUpdate.setMessage(post.getMessage());
+   postUpdate.setLink(post.getLink());
    facebook.posts().postFeed()
    System.out.println("Post successful!");
   } catch (FacebookException e) {
