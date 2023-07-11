@@ -1,5 +1,6 @@
 package com.example.megaPassworkSaver.data.model;
 
+import facebook4j.Link;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,7 +22,8 @@ public class FacebookPost {
 
     private String title;
     private String message;
-    private String imageUrl;
-    private String videoUrl;
+    private Link imageUrl;
+    private Link videoUrl;
+
 
 }
