@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,8 +19,8 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @OneToMany( cascade = CascadeType.ALL, mappedBy = "listOfPasswords", orphanRemoval = true)
-    private  Set<Password> listOfPasswords;
+    @OneToMany( cascade = CascadeType.ALL, mappedBy = "appUser", orphanRemoval = true)
+    private  Set<Password> listOfPasswords = new HashSet<>();
     private String userName;
     private String unlockPassword;
     private String emailAddress;

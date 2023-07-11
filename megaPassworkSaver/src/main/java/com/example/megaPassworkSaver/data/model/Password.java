@@ -17,7 +17,7 @@ public class Password {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @OneToOne( cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToOne(fetch = FetchType.LAZY)
     private AppUser appUser;
     private LocalDateTime createdAt;
     private LocalDateTime LastUpdatedAt;
