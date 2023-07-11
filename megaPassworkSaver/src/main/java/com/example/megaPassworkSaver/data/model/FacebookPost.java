@@ -10,6 +10,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.net.URL;
+
 @Entity
 @Builder
 @AllArgsConstructor
@@ -22,8 +24,9 @@ public class FacebookPost {
 
     private String title;
     private String message;
-    private Link imageUrl;
-    private Link videoUrl;
+    private URL imageUrl;
+    private URL videoUrl;
+    private URL link;
 
 
 }
