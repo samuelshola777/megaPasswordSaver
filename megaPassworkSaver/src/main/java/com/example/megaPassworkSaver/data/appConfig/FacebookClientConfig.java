@@ -10,7 +10,7 @@ public class FacebookClientConfig {
 
 
 
-    private static final String APP_ID = "YOUR_APP_ID";
+    private static final String FACEBOOK_APP_ID ;
     private static final String APP_SECRET = "YOUR_APP_SECRET";
     private static final String ACCESS_TOKEN = "YOUR_ACCESS_TOKEN";
 
