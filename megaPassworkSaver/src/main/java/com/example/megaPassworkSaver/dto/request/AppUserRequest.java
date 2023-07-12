@@ -14,8 +14,7 @@ public class AppUserRequest {
     private String mainQuestion;
     private String mainAnswer;
     private String unlockPassword;
-    private int numberOfPasswords;
-    @OneToMany( cascade = CascadeType.ALL, mappedBy = "appUser", orphanRemoval = true)
-    private  Set<Password> listOfPasswords = new HashSet<>();
+
+
 
 }
