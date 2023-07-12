@@ -22,7 +22,7 @@ public class AppUserServiceImpl implements AppUserService {
        if (!appUserRepository.findByEmailAddress(emailAddress)) throw new EmailAlreadyExistException("email already Exist");
 
     }
-    private static void passwordVerifier(String password) {
+    private void passwordVerifier(String password) {
         int digit = 0;
         for (int i = 0; i <password.length() ; i++) {
             if (Character.isDigit(password.charAt(i))) digit ++;
@@ -30,8 +30,6 @@ public class AppUserServiceImpl implements AppUserService {
         if (digit < 3) throw new RegistrationException("invalid password At least password most contain 3 digit");
         }
 
-    public static void main(String[] args) {
-        passwordVerifier("fdhs8983");
-    }
+
 
 }
