@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 //@RequestMapping("/api")
 public class HomeController {
-    Facebook
+
 //private final FacebookService facebookService;
 
     @GetMapping("/")
