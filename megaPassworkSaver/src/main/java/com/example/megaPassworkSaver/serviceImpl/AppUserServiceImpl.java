@@ -1,5 +1,6 @@
 package com.example.megaPassworkSaver.serviceImpl;
 
+import com.example.megaPassworkSaver.data.model.AppUser;
 import com.example.megaPassworkSaver.data.repository.AppUserRepository;
 import com.example.megaPassworkSaver.dto.request.AppUserRequest;
 import com.example.megaPassworkSaver.dto.response.AppUserResponse;
@@ -30,6 +31,9 @@ public class AppUserServiceImpl implements AppUserService {
             if (Character.isDigit(password.charAt(i))) digit ++;
         }
         if (digit < 3) throw new RegistrationException("invalid password At least password most contain 3 digit");
+        }
+        private AppUser mapRequestToAppUser(AppUserRequest appUserRequest){
+        return AppUser.builder().build();
         }
 
 
