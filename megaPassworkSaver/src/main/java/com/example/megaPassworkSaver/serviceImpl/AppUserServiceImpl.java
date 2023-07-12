@@ -12,9 +12,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class AppUserServiceImpl implements AppUserService {
     private final AppUserRepository appUserRepository;
+
     @Override
     public AppUserResponse registerNewUser(AppUserRequest appUserRequest3) {
         ifEmailAlreadyExist(appUserRequest3.getEmailAddress());
+        passwordVerifier(appUserRequest3.getUnlockPassword());
 
         return null;
     }
