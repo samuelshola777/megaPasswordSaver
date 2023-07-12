@@ -32,8 +32,6 @@ class AppUserServiceTest {
     appUserRequest2 = new AppUserRequest();
     appUserRequest2.setEmailAddress("samuelshola14@gmail.com");
     appUserRequest2.setUserName("samuelshola14");
-    appUserRequest2.setUnlockPassword("ola14");
-    appUserRequest2.setMainQuestion("6");
     appUserRequest2.setMainAnswer("joy");
 
 
