@@ -36,6 +36,8 @@ public class AppUserServiceImpl implements AppUserService {
         return AppUser.builder()
                 .userName(appUserRequest.getUserName())
                 .emailAddress(appUserRequest.getEmailAddress())
+                .mainAnswer(appUserRequest.getMainAnswer())
+                .listOfPasswords(appUserRequest.getListOfPasswords())
                 .build();
         }
 

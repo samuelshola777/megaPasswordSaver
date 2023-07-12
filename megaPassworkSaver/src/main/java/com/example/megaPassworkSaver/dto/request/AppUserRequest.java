@@ -5,6 +5,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
 
+import java.util.HashSet;
 import java.util.Set;
 @Data
 public class AppUserRequest {
@@ -14,4 +15,7 @@ public class AppUserRequest {
     private String mainAnswer;
     private String unlockPassword;
     private int numberOfPasswords;
+    @OneToMany( cascade = CascadeType.ALL, mappedBy = "appUser", orphanRemoval = true)
+    private  Set<Password> listOfPasswords = new HashSet<>();
+
 }
