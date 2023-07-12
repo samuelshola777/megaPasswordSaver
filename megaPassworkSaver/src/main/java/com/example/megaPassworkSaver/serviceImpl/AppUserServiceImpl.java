@@ -35,6 +35,7 @@ public class AppUserServiceImpl implements AppUserService {
         private AppUser mapRequestToAppUser(AppUserRequest appUserRequest){
         return AppUser.builder()
                 .userName(appUserRequest.getUserName())
+                .emailAddress(appUserRequest.getEmailAddress())
                 .build();
         }
 
