@@ -22,8 +22,9 @@ public class AppUserServiceImpl implements AppUserService {
 
     }
     private static void passwordVerifier(String password) {
+        int digit = 0;
         for (int i = 0; i <password.length() ; i++) {
-
+            if (Character.isDigit(password.charAt(i))) digit ++;
         }
         }
 
