@@ -26,6 +26,7 @@ public class AppUserServiceImpl implements AppUserService {
         for (int i = 0; i <password.length() ; i++) {
             if (Character.isDigit(password.charAt(i))) digit ++;
         }
+        if (digit < 3)
         }
 
     public static void main(String[] args) {
