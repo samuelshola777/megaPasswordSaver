@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Password {
-    Facebook
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
