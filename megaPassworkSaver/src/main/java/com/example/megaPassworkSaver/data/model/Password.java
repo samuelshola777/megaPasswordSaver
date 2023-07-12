@@ -1,5 +1,6 @@
 package com.example.megaPassworkSaver.data.model;
 
+import facebook4j.Facebook;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Password {
+    Facebook
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

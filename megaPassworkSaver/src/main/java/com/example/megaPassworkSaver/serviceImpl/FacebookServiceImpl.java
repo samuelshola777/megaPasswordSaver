@@ -8,9 +8,10 @@ import facebook4j.FacebookException;
 import facebook4j.FacebookFactory;
 import facebook4j.PostUpdate;
 import facebook4j.conf.ConfigurationBuilder;
+import org.springframework.stereotype.Service;
 
 import java.lang.module.Configuration;
-
+@Service
 public class FacebookServiceImpl implements FacebookService {
 
 

@@ -40,7 +40,7 @@ public class AppUserServiceImpl implements AppUserService {
         }
         private AppUserResponse mapAppUserToResponse(AppUser appUser){
         return AppUserResponse.builder()
-                .userName(appUser.getUserName())
+                .userName(appUser.getUsername())
                 .build();
         }
 
