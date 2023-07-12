@@ -18,8 +18,8 @@ public class AppUserServiceImpl implements AppUserService {
     public AppUserResponse registerNewUser(AppUserRequest appUserRequest3) {
         ifEmailAlreadyExist(appUserRequest3.getEmailAddress());
         passwordVerifier(appUserRequest3.getUnlockPassword());
-
-        return null;
+        AppUser mappedAppUser = mapRequestToAppUser(appUserRequest3);
+        return mapAppUserToResponse(appUserRepository.save(mappedAppUser));
     }
     private void ifEmailAlreadyExist(String emailAddress) {
        if (!appUserRepository.findByEmailAddress(emailAddress)) throw new EmailAlreadyExistException("email already Exist");
@@ -36,6 +36,11 @@ public class AppUserServiceImpl implements AppUserService {
         return AppUser.builder()
                 .userName(appUserRequest.getUserName())
                 .emailAddress(appUserRequest.getEmailAddress())
+                .build();
+        }
+        private AppUserResponse mapAppUserToResponse(AppUser appUser){
+        return AppUserResponse.builder()
+                .userName(appUser.getUserName())
                 .build();
         }
 
