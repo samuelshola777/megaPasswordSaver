@@ -4,6 +4,7 @@ import com.example.megaPassworkSaver.data.repository.AppUserRepository;
 import com.example.megaPassworkSaver.dto.request.AppUserRequest;
 import com.example.megaPassworkSaver.dto.response.AppUserResponse;
 import com.example.megaPassworkSaver.exception.EmailAlreadyExistException;
+import com.example.megaPassworkSaver.exception.RegistrationException;
 import com.example.megaPassworkSaver.service.AppUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class AppUserServiceImpl implements AppUserService {
         for (int i = 0; i <password.length() ; i++) {
             if (Character.isDigit(password.charAt(i))) digit ++;
         }
-        if (digit < 3)
+        if (digit < 3) throw new RegistrationException("invalid password At least password most contain 3 digit");
         }
 
     public static void main(String[] args) {
