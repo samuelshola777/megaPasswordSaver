@@ -41,8 +41,7 @@ class AppUserServiceTest {
 
     appUserRequest3.setUserName("marthins");
     appUserRequest3.setEmailAddress("marthins4@gmail.com");
-    appUserRequest3.setMainAnswer("garri");
-    appUserRequest3.setMainQuestion("2");
+
     appUserRequest3.setUnlockPassword("ubuntu");
     }
 
