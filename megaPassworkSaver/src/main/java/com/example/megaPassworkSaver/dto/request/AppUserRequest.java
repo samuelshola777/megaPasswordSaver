@@ -11,8 +11,6 @@ import java.util.Set;
 public class AppUserRequest {
     private String userName;
     private String emailAddress;
-    private String mainQuestion;
-    private String mainAnswer;
     private String unlockPassword;
 
 
