@@ -33,7 +33,9 @@ public class AppUserServiceImpl implements AppUserService {
         if (digit < 3) throw new RegistrationException("invalid password At least password most contain 3 digit");
         }
         private AppUser mapRequestToAppUser(AppUserRequest appUserRequest){
-        return AppUser.builder().build();
+        return AppUser.builder()
+                .userName(appUserRequest.getUserName())
+                .build();
         }
 
 
