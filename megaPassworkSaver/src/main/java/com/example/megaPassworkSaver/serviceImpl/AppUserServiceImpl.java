@@ -57,26 +57,9 @@ public class AppUserServiceImpl implements AppUserService {
 //        private String passwordEncoder(String password){
 //
 //        }
-    public String encryptPassword(String password) {
-        byte[] encodedBytes = Base64.getEncoder().encode(password.getBytes(StandardCharsets.UTF_8));
-        return new String(encodedBytes);
-    }
 
-    public String decryptPassword(String encodedPassword) {
-        byte[] decodedBytes = Base64.getDecoder().decode(encodedPassword.getBytes(StandardCharsets.UTF_8));
-        return new String(decodedBytes);
-    }
 
-    public static void main(String[] args) {
-       AppUserServiceImpl passwordServiceZ = new AppUserServiceImpl();
 
-        String password = "myPassword123";
-        String encryptedPassword = passwordServiceZ.encryptPassword(password);
-        System.out.println("Encrypted password: " + encryptedPassword);
-
-        String decryptedPassword = passwordServiceZ.decryptPassword(encryptedPassword);
-        System.out.println("Decrypted password: " + decryptedPassword);
-    }
 
 
 
