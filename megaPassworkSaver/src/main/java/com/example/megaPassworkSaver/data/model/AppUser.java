@@ -29,8 +29,6 @@ public class AppUser implements UserDetails {
     private String userName;
     private String unlockPassword;
     private String emailAddress;
-    private String mainQuestion;
-    private String mainAnswer;
     private Role role;
 private  int numberOfPasswords = listOfPasswords.size();
 
