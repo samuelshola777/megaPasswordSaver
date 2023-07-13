@@ -25,13 +25,13 @@ class AppUserServiceTest {
     appUserRequest1.setUserName("boneshaker");
     appUserRequest1.setEmailAddress("boneshaker@gmail.com");
 
-    appUserRequest1.setMainAnswer("goat");
+
 
 
     appUserRequest2 = new AppUserRequest();
     appUserRequest2.setEmailAddress("samuelshola14@gmail.com");
     appUserRequest2.setUserName("samuelshola14");
-    appUserRequest2.setMainAnswer("joy");
+
 
 
     appUserRequest3 = new AppUserRequest();
