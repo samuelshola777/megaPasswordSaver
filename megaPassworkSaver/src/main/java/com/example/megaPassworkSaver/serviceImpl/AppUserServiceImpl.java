@@ -7,12 +7,22 @@ import com.example.megaPassworkSaver.dto.response.AppUserResponse;
 import com.example.megaPassworkSaver.exception.EmailAlreadyExistException;
 import com.example.megaPassworkSaver.exception.RegistrationException;
 import com.example.megaPassworkSaver.service.AppUserService;
+import com.example.megaPassworkSaver.service.PasswordServiceZ;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
 @RequiredArgsConstructor
 @Service
+//@NoArgsConstructor
 public class AppUserServiceImpl implements AppUserService {
-    private final AppUserRepository appUserRepository;
+   // private final AppUserRepository appUserRepository;
+   @Autowired
+    private  AppUserRepository appUserRepository;
 
     @Override
     public AppUserResponse registerNewUser(AppUserRequest appUserRequest3) {
@@ -25,7 +35,7 @@ public class AppUserServiceImpl implements AppUserService {
        if (!appUserRepository.findByEmailAddress(emailAddress)) throw new EmailAlreadyExistException("email already Exist");
 
     }
-    private void passwordVerifier(String password) {
+        private void passwordVerifier(String password) {
         int digit = 0;
         for (int i = 0; i <password.length() ; i++) {
             if (Character.isDigit(password.charAt(i))) digit ++;
@@ -44,6 +54,30 @@ public class AppUserServiceImpl implements AppUserService {
                 .build();
         }
 
+//        private String passwordEncoder(String password){
+//
+//        }
+    public String encryptPassword(String password) {
+        byte[] encodedBytes = Base64.getEncoder().encode(password.getBytes(StandardCharsets.UTF_8));
+        return new String(encodedBytes);
+    }
+
+    public String decryptPassword(String encodedPassword) {
+        byte[] decodedBytes = Base64.getDecoder().decode(encodedPassword.getBytes(StandardCharsets.UTF_8));
+        return new String(decodedBytes);
+    }
+
+    public static void main(String[] args) {
+       AppUserServiceImpl passwordServiceZ = new AppUserServiceImpl();
+
+        String password = "myPassword123";
+        String encryptedPassword = passwordServiceZ.encryptPassword(password);
+        System.out.println("Encrypted password: " + encryptedPassword);
+
+        String decryptedPassword = passwordServiceZ.decryptPassword(encryptedPassword);
+        System.out.println("Decrypted password: " + decryptedPassword);
+    }
 
 
-}
+
+        }
