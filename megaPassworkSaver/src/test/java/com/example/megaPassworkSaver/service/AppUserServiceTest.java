@@ -25,13 +25,14 @@ class AppUserServiceTest {
 
     appUserRequest1.setUserName("boneshaker");
     appUserRequest1.setEmailAddress("boneshaker@gmail.com");
-
+        appUserRequest1.setPassword("it wont work443s");
 
 
 
     appUserRequest2 = new AppUserRequest();
     appUserRequest2.setEmailAddress("samuelshola14@gmail.com");
     appUserRequest2.setUserName("samuelshola14");
+        appUserRequest2.setPassword("noWeapon321");
 
 
 
