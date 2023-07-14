@@ -9,4 +9,6 @@ public interface AppUserService {
 
 
     AppUserResponse registerNewUser(AppUserRequest appUserRequest3);
+
+    long countUsers();
 }

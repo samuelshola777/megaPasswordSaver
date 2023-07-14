@@ -30,6 +30,12 @@ public class AppUserServiceImpl implements AppUserService {
         AppUser mappedAppUser = mapRequestToAppUser(appUserRequest3);
         return mapAppUserToResponse(appUserRepository.save(mappedAppUser));
     }
+
+    @Override
+    public long countUsers() {
+        return appUserRepository.count();
+    }
+
     private void ifEmailAlreadyExist(String emailAddress) {
         AppUser foundAppUser = appUserRepository.findByEmailAddress(emailAddress);
        if (foundAppUser!= null) throw new EmailAlreadyExistException("email already Exist");
