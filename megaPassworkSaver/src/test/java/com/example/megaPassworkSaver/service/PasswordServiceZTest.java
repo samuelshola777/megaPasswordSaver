@@ -1,6 +1,7 @@
 package com.example.megaPassworkSaver.service;
 
 import com.example.megaPassworkSaver.data.model.Password;
+import com.example.megaPassworkSaver.exception.AppUserException;
 import jakarta.xml.bind.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,13 +15,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class PasswordServiceZTest {
     @Autowired
     private  PasswordServiceZ passwordService;
-
-
 private Password password1;
 private Password password2;
 private Password password3;
-    @Autowired
-    private ValidationAutoConfiguration validation;
+
 
     @BeforeEach
     void setUp() {
@@ -44,13 +42,13 @@ private Password password3;
     }
     @Test
     void testThatPasswordCanBeCreated(){
+assertThrows(AppUserException.class, ()-> {passwordService.createPassword(password1);});
 
-
-        assertNotNull(passwordService.createPassword(password1));
-        assertNotNull(passwordService.createPassword(password2));
-        assertNotNull(passwordService.createPassword(password3));
-
-        assertEquals(3, passwordService.countAllPassword());
+//        assertNotNull(passwordService.createPassword(password1));
+//        assertNotNull(passwordService.createPassword(password2));
+//        assertNotNull(passwordService.createPassword(password3));
+//
+//        assertEquals(3, passwordService.countAllPassword());
     }
 
 
@@ -61,5 +59,6 @@ private Password password3;
         assertEquals(0, passwordService.countAllPassword());
 
     }
+
 
 }

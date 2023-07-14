@@ -4,4 +4,6 @@ import com.example.megaPassworkSaver.data.model.Password;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PasswordRepository extends JpaRepository<Password,Long> {
+    void deleteByPasswordLabel(String passwordLabel);
+    Password findByPasswordLabel(String passwordLabel);
 }

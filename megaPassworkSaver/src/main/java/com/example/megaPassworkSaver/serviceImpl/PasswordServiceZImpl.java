@@ -1,11 +1,15 @@
 package com.example.megaPassworkSaver.serviceImpl;
 
 import com.example.megaPassworkSaver.data.model.Password;
+import com.example.megaPassworkSaver.data.model.Token;
 import com.example.megaPassworkSaver.data.repository.PasswordRepository;
+import com.example.megaPassworkSaver.data.repository.TokenRepository;
 import com.example.megaPassworkSaver.exception.AppUserException;
+import com.example.megaPassworkSaver.exception.PasswordException;
 import com.example.megaPassworkSaver.service.PasswordServiceZ;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,9 +21,11 @@ import java.util.Base64;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class PasswordServiceZImpl implements PasswordServiceZ {
     @NonNull
     private final PasswordRepository passwordRepository;
+    private final TokenRepository tokenRepository;
 
     private String decryptPassword(String encodedPassword) {
         byte[] decodedBytes = Base64.getDecoder().decode(encodedPassword.getBytes(StandardCharsets.UTF_8));
@@ -32,7 +38,11 @@ public class PasswordServiceZImpl implements PasswordServiceZ {
         byte[] encodedBytes = Base64.getEncoder().encode(password.getBytes(StandardCharsets.UTF_8));
        return new String(encodedBytes);
     }
-
+public Password findPassword(String passwordLabel) {
+if (passwordRepository.findByPasswordLabel(passwordLabel) == null)
+throw new PasswordException("Password does not exist");
+return passwordRepository.findByPasswordLabel(passwordLabel);
+    }
 
     @Override
     public Password createPassword(Password password2) {
@@ -55,5 +65,27 @@ public class PasswordServiceZImpl implements PasswordServiceZ {
     public void deleteAllPassword() {
         passwordRepository.deleteAll();
     }
+
+    @Override
+    public void deletePasswordByLabel(String passwordLabel) {
+        passwordRepository.deleteByPasswordLabel(passwordLabel);
+    }
+
+
+    public Token tokenGenerator(String passwordLabel) {
+        StringBuilder buildedString = new StringBuilder(passwordLabel);
+        Password foundPassword = findPassword(passwordLabel);
+    String hashLabel = decryptPassword((String) buildedString.subSequence(3, passwordLabel.length()-2));
+   Token token = Token.builder()
+            .generatedAt(LocalDateTime.now())
+            .token(hashLabel)
+            .expiredAt(LocalDateTime.now().plusMinutes(30))
+            .build();
+      foundPassword.setToken(token.getToken());
+      token.setPassword(foundPassword);
+      passwordRepository.save(foundPassword);
+      return tokenRepository.save(token);
+  }
+
 
 }

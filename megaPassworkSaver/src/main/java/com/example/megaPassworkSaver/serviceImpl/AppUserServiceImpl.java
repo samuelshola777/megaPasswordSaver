@@ -1,13 +1,17 @@
 package com.example.megaPassworkSaver.serviceImpl;
 
 import com.example.megaPassworkSaver.data.model.AppUser;
+import com.example.megaPassworkSaver.data.model.Password;
+import com.example.megaPassworkSaver.data.model.Token;
 import com.example.megaPassworkSaver.data.repository.AppUserRepository;
+import com.example.megaPassworkSaver.dto.UnlockPassword;
 import com.example.megaPassworkSaver.dto.request.AppUserRequest;
 import com.example.megaPassworkSaver.dto.response.AppUserResponse;
 import com.example.megaPassworkSaver.exception.EmailAlreadyExistException;
 import com.example.megaPassworkSaver.exception.RegistrationException;
 import com.example.megaPassworkSaver.service.AppUserService;
 import com.example.megaPassworkSaver.service.PasswordServiceZ;
+import jakarta.transaction.Transactional;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +19,13 @@ import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+@Transactional
 
 @RequiredArgsConstructor
 @Service
 public class AppUserServiceImpl implements AppUserService {
     private final AppUserRepository appUserRepository;
+    private final PasswordServiceZ passwordServiceZ;
 //   @Autowired
 //    private  AppUserRepository appUserRepository;
 
@@ -35,7 +41,52 @@ public class AppUserServiceImpl implements AppUserService {
     public long countUsers() {
         return appUserRepository.count();
     }
+@Transactional
+    @Override
+    public AppUserResponse userSavePassword(Password password1) {
+        AppUser foundUser = findAppUserByEmail(password1.getAppUserEmail());
+        password1.setAppUser(foundUser);
+      Password createdPassword =  passwordServiceZ.createPassword(password1);
+      foundUser.getListOfPasswords().add(createdPassword);
+      foundUser.setNumberOfPasswords(foundUser.getListOfPasswords().size());
+        return mapToAppUserResponse(appUserRepository.save(foundUser));
+    }
+@Transactional
+    @Override
+    public long countMyPassword(String mail) {
+        return findAppUserByEmail(mail).getListOfPasswords().size();
+    }
 
+    @Override
+    public AppUserResponse deletePasswordByLabel(String passwordLabel) {
+        passwordServiceZ.deletePasswordByLabel( passwordLabel);
+        return null;
+    }
+
+    @Override
+    public Token generateAccessToken(String passwordLabel) {
+  return passwordServiceZ.tokenGenerator(passwordLabel);
+    }
+
+    @Override
+    public UnlockPassword getPasswordByLabel(String passwordLabel, String token) {
+        Password foundPassword = passwordServiceZ.findPassword(passwordLabel);
+        return null;
+    }
+
+//    @Override
+//    public UnlockPassword getPasswordByLabel(String passwordLabel, String toString) {
+//
+//
+//    }
+
+
+    private AppUserResponse mapToAppUserResponse(AppUser foundUser) {
+        return AppUserResponse.builder()
+                .userName(foundUser.getUserName())
+                .numberOfPasswords(foundUser.getNumberOfPasswords())
+                .build();
+}
     private void ifEmailAlreadyExist(String emailAddress) {
         AppUser foundAppUser = appUserRepository.findByEmailAddress(emailAddress);
        if (foundAppUser!= null) throw new EmailAlreadyExistException("email already Exist");
@@ -56,13 +107,15 @@ public class AppUserServiceImpl implements AppUserService {
         }
         private AppUserResponse mapAppUserToResponse(AppUser appUser){
         return AppUserResponse.builder()
-                .userName(appUser.getUsername())
+                .userName(appUser.getUserName())
                 .build();
         }
 
-//        private String passwordEncoder(String password){
-//
-//        }
+        public AppUser findAppUserByEmail(String email){
+        AppUser foundAppUser = appUserRepository.findByEmailAddress(email);
+            if (foundAppUser== null) throw new EmailAlreadyExistException("email already Exist");
+            return foundAppUser;
+        }
 
 
 
