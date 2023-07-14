@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AppUserServiceTest {
 @Autowired
-    private  AppUserService appUserService;
+private  AppUserService appUserService;
     private AppUserRequest appUserRequest1;
     private AppUserRequest appUserRequest2;
     private AppUserRequest appUserRequest3;

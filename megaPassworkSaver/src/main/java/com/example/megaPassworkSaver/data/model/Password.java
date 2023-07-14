@@ -2,10 +2,9 @@ package com.example.megaPassworkSaver.data.model;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -19,6 +18,8 @@ public class Password {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotEmpty
+    @NotBlank
     @ManyToOne(fetch = FetchType.LAZY)
     private AppUser appUser;
     private String appUserEmail;
