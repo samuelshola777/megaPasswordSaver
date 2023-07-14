@@ -14,5 +14,7 @@ public class AppUserRequest {
     private String unlockPassword;
 
 
-
+    public void setPassword(String goatAndPasswords) {
+        this.unlockPassword = goatAndPasswords;
+    }
 }
