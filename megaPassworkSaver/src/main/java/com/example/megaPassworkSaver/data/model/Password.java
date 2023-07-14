@@ -1,6 +1,6 @@
 package com.example.megaPassworkSaver.data.model;
 
-import facebook4j.Facebook;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -18,11 +18,10 @@ import java.util.Base64;
 
 @RequiredArgsConstructor
 @Service
-//@NoArgsConstructor
 public class AppUserServiceImpl implements AppUserService {
-   // private final AppUserRepository appUserRepository;
-   @Autowired
-    private  AppUserRepository appUserRepository;
+    private final AppUserRepository appUserRepository;
+//   @Autowired
+//    private  AppUserRepository appUserRepository;
 
     @Override
     public AppUserResponse registerNewUser(AppUserRequest appUserRequest3) {
@@ -32,7 +31,8 @@ public class AppUserServiceImpl implements AppUserService {
         return mapAppUserToResponse(appUserRepository.save(mappedAppUser));
     }
     private void ifEmailAlreadyExist(String emailAddress) {
-       if (!appUserRepository.findByEmailAddress(emailAddress)) throw new EmailAlreadyExistException("email already Exist");
+        AppUser foundAppUser = appUserRepository.findByEmailAddress(emailAddress);
+       if (foundAppUser!= null) throw new EmailAlreadyExistException("email already Exist");
 
     }
         private void passwordVerifier(String password) {

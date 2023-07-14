@@ -1,6 +1,6 @@
 package com.example.megaPassworkSaver.data.model;
 
-import facebook4j.Link;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
