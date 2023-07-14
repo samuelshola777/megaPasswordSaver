@@ -1,7 +1,7 @@
 package com.example.megaPassworkSaver.service;
 
-public interface PasswordServiceZ {
-    String decryptPassword(String encodedPassword);
-    String encryptPassword(String password);
+import com.example.megaPassworkSaver.data.model.Password;
 
+public interface PasswordServiceZ {
+    void createPassword(Password password2);
 }

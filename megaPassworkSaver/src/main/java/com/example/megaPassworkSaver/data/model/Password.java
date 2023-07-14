@@ -21,6 +21,7 @@ public class Password {
     private long id;
     @ManyToOne(fetch = FetchType.LAZY)
     private AppUser appUser;
+    private String appUserEmail;
     private LocalDateTime createdAt;
     private LocalDateTime LastUpdatedAt;
     private String password;
