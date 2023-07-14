@@ -47,9 +47,9 @@ class AppUserServiceTest {
     @Test
     void testThatApUserCanRegister(){
 
-//        assertNotNull(appUserService.registerNewUser(appUserRequest1));
-//        assertNotNull(appUserService.registerNewUser(appUserRequest2));
-//        assertNotNull(appUserService.registerNewUser(appUserRequest3));
+        assertNotNull(appUserService.registerNewUser(appUserRequest1));
+        assertNotNull(appUserService.registerNewUser(appUserRequest2));
+        assertNotNull(appUserService.registerNewUser(appUserRequest3));
 
 
         assertEquals(3,appUserService.countUsers());
