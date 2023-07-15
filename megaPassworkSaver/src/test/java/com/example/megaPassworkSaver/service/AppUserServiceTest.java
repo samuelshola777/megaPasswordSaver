@@ -90,8 +90,8 @@ private  AppUserService appUserService;
     }
     @Test
     void testThatAppUserCanViewPassword(){
-        String token = appUserService.generateAccessToken("my data base password","")
-        assertEquals("my data base password", appUserService.getPasswordByLabel("my data base password",).getPassword());
+        String token = appUserService.generateAccessToken("my data base password","samuelshola14@gmail.com").getToken();
+        assertEquals("my data base password", appUserService.getPasswordByLabel("my data base password",token).getPassword());
     }
 
     @Test
