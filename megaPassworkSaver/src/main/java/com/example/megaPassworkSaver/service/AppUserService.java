@@ -21,6 +21,6 @@ public interface AppUserService {
     long countMyPassword(String mail);
 
     AppUserResponse deletePasswordByLabel(String passwordLabel);
-    Token generateAccessToken(String passwordLabel);
+    Token generateAccessToken(String passwordLabel, String appUser);
     UnlockPassword getPasswordByLabel(String myDataBasePassword, String token);
 }

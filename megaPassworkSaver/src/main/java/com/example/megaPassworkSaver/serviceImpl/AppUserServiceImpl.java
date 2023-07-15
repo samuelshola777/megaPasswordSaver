@@ -9,6 +9,7 @@ import com.example.megaPassworkSaver.dto.request.AppUserRequest;
 import com.example.megaPassworkSaver.dto.response.AppUserResponse;
 import com.example.megaPassworkSaver.exception.EmailAlreadyExistException;
 import com.example.megaPassworkSaver.exception.RegistrationException;
+import com.example.megaPassworkSaver.exception.TokenException;
 import com.example.megaPassworkSaver.service.AppUserService;
 import com.example.megaPassworkSaver.service.PasswordServiceZ;
 import jakarta.transaction.Transactional;
@@ -64,16 +65,30 @@ public class AppUserServiceImpl implements AppUserService {
     }
 
     @Override
-    public Token generateAccessToken(String passwordLabel) {
-  return passwordServiceZ.tokenGenerator(passwordLabel);
+    public Token generateAccessToken(String passwordLabel, String appUserEmail) {
+        AppUser appUser = findAppUserByEmail(appUserEmail);
+  Token token =passwordServiceZ.tokenGenerator(passwordLabel);
+        appUser.setToken(token.getToken());
+        appUserRepository.save(appUser);
+        return token;
     }
 
     @Override
     public UnlockPassword getPasswordByLabel(String passwordLabel, String token) {
         Password foundPassword = passwordServiceZ.findPassword(passwordLabel);
+        if (foundPassword.getAppUser().getToken().equals(token)) throw new TokenException("invalid token");
         return null;
     }
-
+private UnlockPassword mapToUnlockPassword(Password password){
+        return UnlockPassword.builder()
+                .appUserEmail(password.getAppUserEmail())
+                .token(password.getToken())
+                .createdAt(password.getCreatedAt())
+                .LastUpdatedAt(password.getLastUpdatedAt())
+                .passwordLabel(password.getPasswordLabel())
+                .password()
+                .build();
+}
 //    @Override
 //    public UnlockPassword getPasswordByLabel(String passwordLabel, String toString) {
 //

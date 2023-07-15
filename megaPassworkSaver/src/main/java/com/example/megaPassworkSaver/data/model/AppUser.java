@@ -28,6 +28,7 @@ public class AppUser {
     private String userName;
     private String unlockPassword;
     private String emailAddress;
+    private String token;
 private  int numberOfPasswords ;
 
 //@Bean

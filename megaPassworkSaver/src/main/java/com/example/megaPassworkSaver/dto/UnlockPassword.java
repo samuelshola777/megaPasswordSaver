@@ -1,9 +1,10 @@
 package com.example.megaPassworkSaver.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-
+@Builder
 @Data
 public class UnlockPassword {
     private String appUserEmail;
