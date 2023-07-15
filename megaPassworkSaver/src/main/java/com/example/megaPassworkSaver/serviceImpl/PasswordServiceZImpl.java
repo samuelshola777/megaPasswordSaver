@@ -72,7 +72,7 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
         passwordRepository.deleteByPasswordLabel(passwordLabel);
     }
 
-
+@Transactional
     public Token tokenGenerator(String passwordLabel) {
         StringBuilder buildedString = new StringBuilder(passwordLabel);
         Password foundPassword = findPassword(passwordLabel);
