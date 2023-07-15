@@ -87,7 +87,7 @@ private UnlockPassword mapToUnlockPassword(Password password){
                 .createdAt(password.getCreatedAt())
                 .LastUpdatedAt(password.getLastUpdatedAt())
                 .passwordLabel(password.getPasswordLabel())
-                .password()
+                .password(password.getPassword())
                 .build();
 }
 //    @Override
