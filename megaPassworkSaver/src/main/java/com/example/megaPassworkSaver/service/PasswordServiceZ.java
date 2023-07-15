@@ -11,6 +11,7 @@ public interface PasswordServiceZ {
 
     void deletePasswordByLabel(String passwordLabel);
     Token tokenGenerator(String passwordLabel);
+    public String decryptPassword(String encodedPassword);
     Password findPassword(String passwordLabel);
 
 }
