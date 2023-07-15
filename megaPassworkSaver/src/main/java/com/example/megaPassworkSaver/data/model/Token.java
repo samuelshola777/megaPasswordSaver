@@ -13,9 +13,11 @@ import java.time.LocalDateTime;
 public class Token {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @ManyToOne
     private Password password;
-    private long id;
+
     private String token;
     private LocalDateTime generatedAt;
     private LocalDateTime expiredAt;

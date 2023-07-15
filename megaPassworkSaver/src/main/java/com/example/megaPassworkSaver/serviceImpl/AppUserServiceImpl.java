@@ -3,46 +3,41 @@ package com.example.megaPassworkSaver.serviceImpl;
 import com.example.megaPassworkSaver.data.model.AppUser;
 import com.example.megaPassworkSaver.data.model.Password;
 import com.example.megaPassworkSaver.data.model.Token;
-import com.example.megaPassworkSaver.data.repository.AppUserRepository;
+import com.example.megaPassworkSaver.data.repository.AppUserRepositoryZ;
 import com.example.megaPassworkSaver.dto.UnlockPassword;
 import com.example.megaPassworkSaver.dto.request.AppUserRequest;
 import com.example.megaPassworkSaver.dto.response.AppUserResponse;
 import com.example.megaPassworkSaver.exception.EmailAlreadyExistException;
 import com.example.megaPassworkSaver.exception.RegistrationException;
-import com.example.megaPassworkSaver.exception.TokenException;
 import com.example.megaPassworkSaver.service.AppUserService;
 import com.example.megaPassworkSaver.service.PasswordServiceZ;
 import jakarta.transaction.Transactional;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 @Transactional
-
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class AppUserServiceImpl implements AppUserService {
-    private final AppUserRepository appUserRepository;
-    private final PasswordServiceZ passwordServiceZ;
-//   @Autowired
-//    private  AppUserRepository appUserRepository;
+
+    private final AppUserRepositoryZ appUserRepositoryZ;
+
+    private final   PasswordServiceZ passwordServiceZ;
+
 
     @Override
     public AppUserResponse registerNewUser(AppUserRequest appUserRequest3) {
         ifEmailAlreadyExist(appUserRequest3.getEmailAddress());
         passwordVerifier(appUserRequest3.getUnlockPassword());
         AppUser mappedAppUser = mapRequestToAppUser(appUserRequest3);
-        return mapAppUserToResponse(appUserRepository.save(mappedAppUser));
+        return mapAppUserToResponse(appUserRepositoryZ.save(mappedAppUser));
     }
 
     @Override
     public long countUsers() {
-        return appUserRepository.count();
+        return appUserRepositoryZ.count();
     }
-@Transactional
+
     @Override
     public AppUserResponse userSavePassword(Password password1) {
         AppUser foundUser = findAppUserByEmail(password1.getAppUserEmail());
@@ -50,9 +45,9 @@ public class AppUserServiceImpl implements AppUserService {
       Password createdPassword =  passwordServiceZ.createPassword(password1);
       foundUser.getListOfPasswords().add(createdPassword);
       foundUser.setNumberOfPasswords(foundUser.getListOfPasswords().size());
-        return mapToAppUserResponse(appUserRepository.save(foundUser));
+        return mapToAppUserResponse(appUserRepositoryZ.save(foundUser));
     }
-@Transactional
+
     @Override
     public long countMyPassword(String mail) {
         return findAppUserByEmail(mail).getListOfPasswords().size();
@@ -69,7 +64,7 @@ public class AppUserServiceImpl implements AppUserService {
         AppUser appUser = findAppUserByEmail(appUserEmail);
   Token token =passwordServiceZ.tokenGenerator(passwordLabel);
         appUser.setToken(token.getToken());
-        appUserRepository.save(appUser);
+        appUserRepositoryZ.save(appUser);
         return token;
     }
 
@@ -104,7 +99,7 @@ private UnlockPassword mapToUnlockPassword(Password password){
                 .build();
 }
     private void ifEmailAlreadyExist(String emailAddress) {
-        AppUser foundAppUser = appUserRepository.findByEmailAddress(emailAddress);
+        AppUser foundAppUser = appUserRepositoryZ.findByEmailAddress(emailAddress);
        if (foundAppUser!= null) throw new EmailAlreadyExistException("email already Exist");
 
     }
@@ -128,7 +123,7 @@ private UnlockPassword mapToUnlockPassword(Password password){
         }
 
         public AppUser findAppUserByEmail(String email){
-        AppUser foundAppUser = appUserRepository.findByEmailAddress(email);
+        AppUser foundAppUser = appUserRepositoryZ.findByEmailAddress(email);
             if (foundAppUser== null) throw new EmailAlreadyExistException("email already Exist");
             return foundAppUser;
         }

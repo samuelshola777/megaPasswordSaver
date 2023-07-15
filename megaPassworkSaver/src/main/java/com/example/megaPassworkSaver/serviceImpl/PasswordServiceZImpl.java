@@ -13,6 +13,9 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
@@ -21,12 +24,13 @@ import java.util.Base64;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+//@Transactional
+
 public class PasswordServiceZImpl implements PasswordServiceZ {
-    @NonNull
+
     private final PasswordRepository passwordRepository;
-    @NonNull
-    private final TokenRepository tokenRepository;
+
+   private final TokenRepository tokenRepository;
 
     public String decryptPassword(String encodedPassword) {
         byte[] decodedBytes = Base64.getDecoder().decode(encodedPassword.getBytes(StandardCharsets.UTF_8));
@@ -85,7 +89,8 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
       foundPassword.setToken(token.getToken());
       token.setPassword(foundPassword);
       passwordRepository.save(foundPassword);
-      return tokenRepository.save(token);
+      return token;
+      //return tokenRepository.save(token);
   }
 
 
