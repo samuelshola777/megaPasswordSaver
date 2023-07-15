@@ -27,7 +27,7 @@ public class PasswordServiceZImpl implements PasswordServiceZ {
     private final PasswordRepository passwordRepository;
     private final TokenRepository tokenRepository;
 
-    private String decryptPassword(String encodedPassword) {
+    public String decryptPassword(String encodedPassword) {
         byte[] decodedBytes = Base64.getDecoder().decode(encodedPassword.getBytes(StandardCharsets.UTF_8));
         return new String(decodedBytes);
     }
