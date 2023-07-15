@@ -25,6 +25,7 @@ import java.util.Base64;
 public class PasswordServiceZImpl implements PasswordServiceZ {
     @NonNull
     private final PasswordRepository passwordRepository;
+    @NonNull
     private final TokenRepository tokenRepository;
 
     public String decryptPassword(String encodedPassword) {
