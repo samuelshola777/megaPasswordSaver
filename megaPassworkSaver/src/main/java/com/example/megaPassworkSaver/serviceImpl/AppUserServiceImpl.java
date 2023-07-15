@@ -76,7 +76,7 @@ public class AppUserServiceImpl implements AppUserService {
     @Override
     public UnlockPassword getPasswordByLabel(String passwordLabel, String token) {
         Password foundPassword = passwordServiceZ.findPassword(passwordLabel);
-        if (foundPassword.getAppUser().getToken().equals(token)) throw new TokenException("invalid token");
+        if (foundPassword.getAppUser().getToken().equals(token)) return mapToUnlockPassword(foundPassword);
         return null;
     }
 private UnlockPassword mapToUnlockPassword(Password password){
