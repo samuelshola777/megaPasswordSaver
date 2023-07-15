@@ -6,10 +6,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.time.LocalDateTime;
 @Entity
-@Builder
-@RequiredArgsConstructor
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
 public class Token {
     @Id
