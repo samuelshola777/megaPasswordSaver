@@ -82,7 +82,7 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
         Password foundPassword = findPassword(passwordLabel);
 String word =   (String) buildedString.subSequence(3, passwordLabel.length()-2);
     System.out.println("(**)-->  " + word);
-    String hashLabel = decryptPassword("boneshaker");
+    String hashLabel = decryptPassword(word);
    Token token = Token.builder()
             .generatedAt(LocalDateTime.now())
             .token(hashLabel)
