@@ -35,31 +35,13 @@ public class PasswordServiceZImpl implements PasswordServiceZ {
     public String decryptPassword(String encodedPassword) {
         byte[] decodedBytes = Base64.getDecoder().decode(encodedPassword.getBytes(StandardCharsets.UTF_8));
 
-        return new String(decodedBytes);
+     return  new String(decodedBytes).replace("_______"," ");
     }
 
-    public static void main(String[] args) {
-        String password = "bones  hak    er";
-        String name = password.replace(" ","_______");
-        System.out.println("(this is password)-> "+name);
 
-        byte[] encodedBytes = Base64.getEncoder().encode(name.getBytes(StandardCharsets.UTF_8));
-        String goat = new String(encodedBytes);
-
-        System.out.println("(this is encoded)-> "+goat);
-
-
-        byte[] decodedBytes = Base64.getDecoder().decode(goat.getBytes(StandardCharsets.UTF_8));
-        System.out.println("(this is decoded)-> "+new String(decodedBytes));
-
-        String replaced = new String(decodedBytes);
-        System.out.println(replaced.replace("_______"," "));
-
-    }
 
     private String encryptPassword(String password) {
         String name = password.replace(" ","_______");
-
         byte[] encodedBytes = Base64.getEncoder().encode(name.getBytes(StandardCharsets.UTF_8));
        return new String(encodedBytes);
     }
