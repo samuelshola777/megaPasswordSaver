@@ -79,7 +79,7 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
 @Transactional
     public Token tokenGenerator(String passwordLabel) {
         Password foundPassword = findPassword(passwordLabel);
-String word = encryptPassword( passwordLabel);
+String word = encryptPassword( passwordLabel.replace(" ","&"));
 
     String hashLabel = decryptPassword(word);
    Token token = Token.builder()
