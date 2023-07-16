@@ -33,7 +33,10 @@ public class PasswordServiceZImpl implements PasswordServiceZ {
    private final TokenRepository tokenRepository;
 
     public String decryptPassword(String encodedPassword) {
-        byte[] decodedBytes = Base64.getDecoder().decode(encodedPassword.getBytes(StandardCharsets.UTF_8));
+        System.out.println("(encripted)-->  "+encryptPassword(encodedPassword));
+        byte[] decodedBytes = Base64.getDecoder().decode(encryptPassword(encodedPassword).getBytes(StandardCharsets.UTF_8));
+
+        //  byte[] decodedBytes = Base64.getDecoder().decode(encodedPassword.getBytes(StandardCharsets.UTF_8));
      return  new String(decodedBytes);}
 
 
@@ -79,10 +82,9 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
 @Transactional
     public Token tokenGenerator(String passwordLabel) {
         Password foundPassword = findPassword(passwordLabel);
-String word = encryptPassword( passwordLabel.replace(" ","&"));
-
-    String hashLabel = decryptPassword(word);
-   Token token = Token.builder()
+        String password =passwordLabel.replace(" ","&");
+         String hashLabel = encryptPassword(password);
+         Token token = Token.builder()
             .generatedAt(LocalDateTime.now())
             .token(hashLabel)
            .expiredAt(LocalDateTime.now())

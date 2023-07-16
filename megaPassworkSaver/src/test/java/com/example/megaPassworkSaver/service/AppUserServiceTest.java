@@ -30,7 +30,7 @@ private  AppUserService appUserService;
 
     appUserRequest1.setUserName("boneshaker");
     appUserRequest1.setEmailAddress("boneshaker@gmail.com");
-        appUserRequest1.setPassword("it wont work443s");
+        appUserRequest1.setPassword("itwontwork443s");
 
 
 
