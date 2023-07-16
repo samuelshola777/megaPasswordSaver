@@ -34,15 +34,13 @@ public class PasswordServiceZImpl implements PasswordServiceZ {
 
     public String decryptPassword(String encodedPassword) {
         byte[] decodedBytes = Base64.getDecoder().decode(encodedPassword.getBytes(StandardCharsets.UTF_8));
-
-     return  new String(decodedBytes).replace("_______"," ");
-    }
-
+     return  new String(decodedBytes);}
 
 
     private String encryptPassword(String password) {
-        String name = password.replace(" ","_______");
-        byte[] encodedBytes = Base64.getEncoder().encode(name.getBytes(StandardCharsets.UTF_8));
+        if (password.contains(" "))throw new PasswordException("invalid password input");
+//        String name = password.replace(" ","_______");
+        byte[] encodedBytes = Base64.getEncoder().encode(password.getBytes(StandardCharsets.UTF_8));
        return new String(encodedBytes);
     }
 public Password findPassword(String passwordLabel) {
@@ -80,9 +78,8 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
 
 @Transactional
     public Token tokenGenerator(String passwordLabel) {
-        StringBuilder buildedString = new StringBuilder(passwordLabel);
         Password foundPassword = findPassword(passwordLabel);
-String word =   (String) buildedString.subSequence(3, passwordLabel.length()-2);
+String word = encryptPassword( passwordLabel);
 
     String hashLabel = decryptPassword(word);
    Token token = Token.builder()
