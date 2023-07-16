@@ -134,17 +134,7 @@ private UnlockPassword mapToUnlockPassword(Password password){
      String wordZ=   word.replace(" ","&&&");
         System.out.println(wordZ);
         System.out.println(wordZ.replace("&&&"," "));
-//        StringBuilder newWords = new StringBuilder(word);
 
-//        StringBuilder receiver = new StringBuilder();
-//        for (int i = 0; i < word.length(); i++) {
-//            if (String.valueOf(newWords.charAt(i)).equals(" ")){
-//                newWords.deleteCharAt(i);
-//            }
-//            System.out.print(newWords);
-//            receiver.append(newWords.charAt(i));
-//        }
-//        System.out.println(receiver);
     }
 
 
