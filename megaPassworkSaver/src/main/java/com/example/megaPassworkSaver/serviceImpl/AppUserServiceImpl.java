@@ -85,11 +85,7 @@ private UnlockPassword mapToUnlockPassword(Password password){
                 .password(password.getPassword())
                 .build();
 }
-//    @Override
-//    public UnlockPassword getPasswordByLabel(String passwordLabel, String toString) {
-//
-//
-//    }
+
 
 
     private AppUserResponse mapToAppUserResponse(AppUser foundUser) {
