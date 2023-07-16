@@ -24,7 +24,7 @@ import java.util.Base64;
 
 @Service
 @RequiredArgsConstructor
-//@Transactional
+@Transactional
 
 public class PasswordServiceZImpl implements PasswordServiceZ {
 
@@ -80,17 +80,19 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
     public Token tokenGenerator(String passwordLabel) {
         StringBuilder buildedString = new StringBuilder(passwordLabel);
         Password foundPassword = findPassword(passwordLabel);
-    String hashLabel = decryptPassword((String) buildedString.subSequence(3, passwordLabel.length()-2));
+String word =   (String) buildedString.subSequence(3, passwordLabel.length()-2);
+    System.out.println("(**)-->  " + word);
+    String hashLabel = decryptPassword("boneshaker");
    Token token = Token.builder()
             .generatedAt(LocalDateTime.now())
             .token(hashLabel)
-            .expiredAt(LocalDateTime.now().plusMinutes(30))
+           .expiredAt(LocalDateTime.now())
             .build();
       foundPassword.setToken(token.getToken());
       token.setPassword(foundPassword);
       passwordRepository.save(foundPassword);
-      return token;
-      //return tokenRepository.save(token);
+//      return token;
+      return tokenRepository.save(token);
   }
 
 

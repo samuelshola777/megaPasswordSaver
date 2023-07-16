@@ -71,7 +71,7 @@ public class AppUserServiceImpl implements AppUserService {
     @Override
     public UnlockPassword getPasswordByLabel(String passwordLabel, String token) {
         Password foundPassword = passwordServiceZ.findPassword(passwordLabel);
-        if (foundPassword.getAppUser().getToken().equals(token)) return mapToUnlockPassword(foundPassword);
+        if (!foundPassword.getToken().equals(token)) return mapToUnlockPassword(foundPassword);
         foundPassword.setPassword(passwordServiceZ.decryptPassword(foundPassword.getPassword()));
         return mapToUnlockPassword(foundPassword);
     }
@@ -128,7 +128,21 @@ private UnlockPassword mapToUnlockPassword(Password password){
             return foundAppUser;
         }
 
+    public static void main(String[] args) {
 
+        String word = "tho only one night";
+        StringBuilder newWords = new StringBuilder(word);
+
+        StringBuilder receiver = new StringBuilder();
+        for (int i = 0; i < word.length(); i++) {
+            if (String.valueOf(newWords.charAt(i)).equals(" ")){
+                newWords.deleteCharAt(i);
+            }
+            System.out.print(newWords);
+            receiver.append(newWords.charAt(i));
+        }
+        System.out.println(receiver);
+    }
 
 
 

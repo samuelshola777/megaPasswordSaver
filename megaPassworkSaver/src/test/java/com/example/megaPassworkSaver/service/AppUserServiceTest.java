@@ -81,18 +81,19 @@ private  AppUserService appUserService;
     void testThatAppUserCanSavePassword(){
 
   assertNotNull(appUserService.userSavePassword(password1));
-//  assertNotNull(appUserService.userSavePassword(password2));
-//  assertNotNull(appUserService.userSavePassword(password3));
+  assertNotNull(appUserService.userSavePassword(password2));
+  assertNotNull(appUserService.userSavePassword(password3));
     }
     @Test
     void  testThatAppUserCanDeletePasswordByLabel(){
         appUserService.deletePasswordByLabel("my data base password");
     }
-//    @Test
-//    void testThatAppUserCanViewPassword(){
-//        String token = appUserService.generateAccessToken("my data base password","samuelshola14@gmail.com").getToken();
-//        assertEquals("my data base password", appUserService.getPasswordByLabel("my data base password",token).getPassword());
-//    }
+    @Test
+    void testThatAppUserCanViewPassword(){
+        String token = appUserService.generateAccessToken("my data base password","samuelshola14@gmail.com").getToken();
+        System.out.println("(this is token)->  " + token);
+        assertEquals("my data base password", appUserService.getPasswordByLabel("my data base password",token).getPassword());
+    }
 
     @Test
     void tesThatAppUserCanDeleteAllPassword(){
