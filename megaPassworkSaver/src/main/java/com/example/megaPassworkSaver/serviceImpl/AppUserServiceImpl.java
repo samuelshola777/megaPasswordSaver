@@ -131,6 +131,7 @@ private UnlockPassword mapToUnlockPassword(Password password){
     public static void main(String[] args) {
 
         String word = "tho only one night";
+        word.replace()
         StringBuilder newWords = new StringBuilder(word);
 
 //        StringBuilder receiver = new StringBuilder();
