@@ -128,14 +128,7 @@ private UnlockPassword mapToUnlockPassword(Password password){
             return foundAppUser;
         }
 
-    public static void main(String[] args) {
-
-        String word = "tho only one night";
-     String wordZ=   word.replace(" ","&&&");
-        System.out.println(wordZ);
-        System.out.println(wordZ.replace("&&&"," "));
-
-    }
+  \
 
 
 
