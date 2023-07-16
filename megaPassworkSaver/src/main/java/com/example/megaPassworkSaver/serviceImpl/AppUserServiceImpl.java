@@ -133,15 +133,15 @@ private UnlockPassword mapToUnlockPassword(Password password){
         String word = "tho only one night";
         StringBuilder newWords = new StringBuilder(word);
 
-        StringBuilder receiver = new StringBuilder();
-        for (int i = 0; i < word.length(); i++) {
-            if (String.valueOf(newWords.charAt(i)).equals(" ")){
-                newWords.deleteCharAt(i);
-            }
-            System.out.print(newWords);
-            receiver.append(newWords.charAt(i));
-        }
-        System.out.println(receiver);
+//        StringBuilder receiver = new StringBuilder();
+//        for (int i = 0; i < word.length(); i++) {
+//            if (String.valueOf(newWords.charAt(i)).equals(" ")){
+//                newWords.deleteCharAt(i);
+//            }
+//            System.out.print(newWords);
+//            receiver.append(newWords.charAt(i));
+//        }
+//        System.out.println(receiver);
     }
 
 
