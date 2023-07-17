@@ -56,9 +56,9 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
     @Override
     public Password createPassword(Password password2) {
         if (password2.getPassword().contains(" ")) throw new PasswordException("Create Password()-> invalid Password");
+        if (password2.getAppUser() == null) throw new  AppUserException("User must be provided");
         password2.setCreatedAt(LocalDateTime.now());
         password2.setPassword(encryptPassword(password2.getPassword()));
-        if (password2.getAppUser() == null) throw new  AppUserException("User must be provided");
         return   passwordRepository.save(password2) ;
 
 
@@ -90,8 +90,8 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
       foundPassword.setToken(token.getToken());
       token.setPassword(foundPassword);
       passwordRepository.save(foundPassword);
-      return token;
-   //   return tokenRepository.save(token);
+//      return token;
+     return tokenRepository.save(token);
   }
 
 
