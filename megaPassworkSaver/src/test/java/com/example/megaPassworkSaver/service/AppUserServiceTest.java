@@ -93,7 +93,7 @@ private  AppUserService appUserService;
 String wrongToken = token+"goat";
         System.out.println(wrongToken+" wrong token");
         System.out.println(token+"  token");
-        assertEquals("my data base password", appUserService.getPasswordByLabel("my github password",token).getPassword());
+        assertEquals("SAMBONE90933", appUserService.getPasswordByLabel("my github password",token).getPassword());
     }
 
     @Test

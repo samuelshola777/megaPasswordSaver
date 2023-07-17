@@ -75,7 +75,6 @@ public class AppUserServiceImpl implements AppUserService {
         Password foundPassword = passwordServiceZ.findPassword(passwordLabel);
         log.info("i got here");
      if (! foundPassword.getAppUser().getToken().equals(token))  return mapToUnlockPassword(foundPassword);
-     foundPassword.setPassword(passwordServiceZ.decryptPassword(foundPassword.getPassword()));
      return mapToUnlockPassword(foundPassword);
     }
 private UnlockPassword mapToUnlockPassword(Password password){
@@ -85,7 +84,7 @@ private UnlockPassword mapToUnlockPassword(Password password){
                 .createdAt(password.getCreatedAt())
                 .LastUpdatedAt(password.getLastUpdatedAt())
                 .passwordLabel(password.getPasswordLabel())
-                .password(password.getPassword())
+                .password(passwordServiceZ.decryptPassword(password.getPassword()))
                 .build();
 }
 
