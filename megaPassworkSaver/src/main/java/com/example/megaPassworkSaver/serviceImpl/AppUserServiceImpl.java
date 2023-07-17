@@ -71,8 +71,9 @@ public class AppUserServiceImpl implements AppUserService {
 
     @Override
     public UnlockPassword getPasswordByLabel(String passwordLabel, String token) {
+        log.info("i got here 1");
         Password foundPassword = passwordServiceZ.findPassword(passwordLabel);
-log.info("i got here");
+        log.info("i got here");
      //   foundPassword.setPassword(passwordServiceZ.decryptPassword(foundPassword.getPassword()));
         return mapToUnlockPassword(foundPassword);
     }
@@ -115,6 +116,7 @@ private UnlockPassword mapToUnlockPassword(Password password){
         }
         private AppUserResponse mapAppUserToResponse(AppUser appUser){
         return AppUserResponse.builder()
+                .numberOfPasswords(appUser.getListOfPasswords().size())
                 .userName(appUser.getUserName())
                 .build();
         }
