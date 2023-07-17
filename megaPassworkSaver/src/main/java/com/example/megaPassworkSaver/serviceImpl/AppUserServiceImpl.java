@@ -15,6 +15,11 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+
+import static jdk.internal.org.jline.reader.impl.LineReaderImpl.CompletionType.List;
+
 @Slf4j
 @Transactional
 @Service
@@ -77,7 +82,14 @@ public class AppUserServiceImpl implements AppUserService {
      if (! foundPassword.getAppUser().getToken().equals(token))  return mapToUnlockPasswordWithWrongToken(foundPassword);
      return mapToUnlockPassword(foundPassword);
     }
-private UnlockPassword mapToUnlockPassword(Password password){
+
+    @Override
+    public long deleteAllPassword(String mail, String myGithubPassword) {
+  findAppUserByEmail(mail).getListOfPasswords().removeAll(findAppUserByEmail(mail).getListOfPasswords());
+        return 0;
+    }
+
+    private UnlockPassword mapToUnlockPassword(Password password){
         return UnlockPassword.builder()
                 .appUserEmail(password.getAppUserEmail())
                 .token(password.getToken())

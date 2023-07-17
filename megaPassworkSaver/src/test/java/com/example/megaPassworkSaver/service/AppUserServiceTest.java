@@ -89,12 +89,17 @@ private  AppUserService appUserService;
     }
     @Test
     void testThatAppUserCanViewPassword(){
-        String token = appUserService.generateAccessToken("my github password","samuelshola14@gmail.com").getToken();
-        assertEquals("SAMBONE90933", appUserService.getPasswordByLabel("my github password",token).getPassword());
+        assertEquals("SAMBONE90933",
+        appUserService.getPasswordByLabel("my github password",
+    appUserService.generateAccessToken("my github password","samuelshola14@gmail.com")
+    .getToken()).getPassword());
     }
     @Test
     void tesThatAppUserCanDeleteAllPassword(){
 
+      assertEquals(0,  appUserService.deleteAllPassword("samuelshola14@gmail.com",
+          appUserService.generateAccessToken("my github password"
+                  ,"samuelshola14@gmail.com").getToken()));
     }
 
 }

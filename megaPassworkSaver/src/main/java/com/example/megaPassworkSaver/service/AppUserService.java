@@ -23,4 +23,6 @@ public interface AppUserService {
     AppUserResponse deletePasswordByLabel(String passwordLabel);
     Token generateAccessToken(String passwordLabel, String emailAddress);
     UnlockPassword getPasswordByLabel(String myDataBasePassword, String token);
+
+    long deleteAllPassword(String mail, String myGithubPassword);
 }
