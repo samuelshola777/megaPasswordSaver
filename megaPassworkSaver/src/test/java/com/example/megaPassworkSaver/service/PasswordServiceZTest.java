@@ -59,6 +59,10 @@ assertThrows(AppUserException.class, ()-> {passwordService.createPassword(passwo
         assertEquals(0, passwordService.countAllPassword());
 
     }
+    @Test
+    void testThatWeCanDeleteAllToken(){
+        passwordService.deleteAllToken();
+    }
 
 
 }

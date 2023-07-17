@@ -34,7 +34,6 @@ public class PasswordServiceZImpl implements PasswordServiceZ {
 
     public String decryptPassword(String encodedPassword) {
         byte[] decodedBytes = Base64.getDecoder().decode(encodedPassword.getBytes(StandardCharsets.UTF_8));
-        //  byte[] decodedBytes = Base64.getDecoder().decode(encodedPassword.getBytes(StandardCharsets.UTF_8));
      return  new String(decodedBytes);}
 
 
@@ -48,6 +47,11 @@ public Password findPassword(String passwordLabel) {
 if (passwordRepository.findByPasswordLabel(passwordLabel) == null)
 throw new PasswordException("Password does not exist");
 return passwordRepository.findByPasswordLabel(passwordLabel);
+    }
+
+    @Override
+    public void deleteAllToken() {
+        tokenRepository.deleteAll();
     }
 
     @Override
