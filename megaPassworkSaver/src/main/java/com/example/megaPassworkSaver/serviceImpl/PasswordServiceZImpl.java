@@ -90,7 +90,7 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
             .build();
       foundPassword.setToken(token.getToken());
       token.setPassword(foundPassword);
-      passwordRepository.save(foundPassword);
+     // passwordRepository.save(foundPassword);
 //      return token;
      return tokenRepository.save(token);
   }
