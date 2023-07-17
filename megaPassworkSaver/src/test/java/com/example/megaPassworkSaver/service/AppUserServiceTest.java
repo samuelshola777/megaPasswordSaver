@@ -97,9 +97,9 @@ private  AppUserService appUserService;
     @Test
     void tesThatAppUserCanDeleteAllPassword(){
 
-      assertEquals(0,  appUserService.deleteAllPassword("samuelshola14@gmail.com",
-          appUserService.generateAccessToken("my github password"
-                  ,"samuelshola14@gmail.com").getToken()));
+      assertEquals(0,  appUserService.deleteAllPassword("marthins4@gmail.com",
+          appUserService.generateAccessToken("my data base password"
+                  ,"marthins4@gmail.com").getToken()));
     }
 
 }

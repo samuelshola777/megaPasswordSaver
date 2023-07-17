@@ -17,9 +17,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-
-import static jdk.internal.org.jline.reader.impl.LineReaderImpl.CompletionType.List;
-
 @Slf4j
 @Transactional
 @Service
@@ -86,7 +83,7 @@ public class AppUserServiceImpl implements AppUserService {
     @Override
     public long deleteAllPassword(String mail, String myGithubPassword) {
   findAppUserByEmail(mail).getListOfPasswords().removeAll(findAppUserByEmail(mail).getListOfPasswords());
-        return 0;
+        return findAppUserByEmail(mail).getListOfPasswords().size();
     }
 
     private UnlockPassword mapToUnlockPassword(Password password){
