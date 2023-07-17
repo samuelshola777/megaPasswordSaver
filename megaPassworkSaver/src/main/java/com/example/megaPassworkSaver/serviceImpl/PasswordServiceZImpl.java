@@ -38,7 +38,7 @@ public class PasswordServiceZImpl implements PasswordServiceZ {
 
 
     private String encryptPassword(String password) {
-        if (password.contains(" "))throw new PasswordException("Encrypt ()-->  invalid password input");
+        if (password.contains(" "))throw new PasswordException("Encrypt  password()-->  invalid password input");
         byte[] encodedBytes = Base64.getEncoder().encode(password.getBytes(StandardCharsets.UTF_8));
        return new String(encodedBytes);
     }
@@ -59,7 +59,6 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
         String encryptedPassword = encryptPassword(password2.getPassword());
         password2.setCreatedAt(LocalDateTime.now());
         password2.setPassword(encryptedPassword);
-       // throw (password2.getAppUser() == null) ? new AppUserException("User must be provided");
         if (password2.getAppUser() == null) throw new  AppUserException("User must be provided");
         return   passwordRepository.save(password2) ;
 
