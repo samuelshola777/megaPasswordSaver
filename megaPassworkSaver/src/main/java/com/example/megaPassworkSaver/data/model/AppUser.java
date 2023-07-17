@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.*;
 
-
+@Entity
 @AllArgsConstructor
 @Data
 @NoArgsConstructor

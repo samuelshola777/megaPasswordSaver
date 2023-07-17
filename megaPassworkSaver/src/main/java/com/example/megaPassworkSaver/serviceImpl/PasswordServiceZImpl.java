@@ -55,6 +55,7 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
 
     @Override
     public Password createPassword(Password password2) {
+        ifPasswordLabelAlreadyExists(password2.getPasswordLabel());
         if (password2.getPassword().contains(" ")) throw new PasswordException("Create Password()-> invalid Password");
         if (password2.getAppUser() == null) throw new  AppUserException("User must be provided");
         password2.setCreatedAt(LocalDateTime.now());
@@ -92,6 +93,9 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
       passwordRepository.save(foundPassword);
 //      return token;
      return tokenRepository.save(token);
+  }
+  private void ifPasswordLabelAlreadyExists(String passwordLabel){
+       if ( passwordRepository.findByPasswordLabel(passwordLabel) != null) throw new PasswordException("Password label already exists");
   }
 
 
