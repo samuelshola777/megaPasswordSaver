@@ -56,9 +56,8 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
     @Override
     public Password createPassword(Password password2) {
         if (password2.getPassword().contains(" ")) throw new PasswordException("Create Password()-> invalid Password");
-        String encryptedPassword = encryptPassword(password2.getPassword());
         password2.setCreatedAt(LocalDateTime.now());
-        password2.setPassword(encryptedPassword);
+        password2.setPassword(encryptPassword(password2.getPassword()));
         if (password2.getAppUser() == null) throw new  AppUserException("User must be provided");
         return   passwordRepository.save(password2) ;
 
