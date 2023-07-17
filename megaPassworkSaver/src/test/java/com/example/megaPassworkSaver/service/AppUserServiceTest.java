@@ -71,7 +71,6 @@ private  AppUserService appUserService;
         assertNotNull(appUserService.registerNewUser(appUserRequest2));
         assertNotNull(appUserService.registerNewUser(appUserRequest3));
 
-
         assertEquals(3,appUserService.countUsers());
 
 
@@ -90,9 +89,11 @@ private  AppUserService appUserService;
     }
     @Test
     void testThatAppUserCanViewPassword(){
-        String token = appUserService.generateAccessToken("my data base password","samuelshola14@gmail.com").getToken();
-
-        assertEquals("my data base password", appUserService.getPasswordByLabel("my data base password",token).getPassword());
+        String token = appUserService.generateAccessToken("my github password","samuelshola14@gmail.com").getToken();
+String wrongToken = token+"goat";
+        System.out.println(wrongToken+" wrong token");
+        System.out.println(token+"  token");
+        assertEquals("my data base password", appUserService.getPasswordByLabel("my github password",wrongToken).getPassword());
     }
 
     @Test

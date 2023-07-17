@@ -72,6 +72,8 @@ public class AppUserServiceImpl implements AppUserService {
     public UnlockPassword getPasswordByLabel(String passwordLabel, String token) {
         Password foundPassword = passwordServiceZ.findPassword(passwordLabel);
         if (!foundPassword.getToken().equals(token)) return mapToUnlockPassword(foundPassword);
+        System.out.println("the foundPassword token is: " + foundPassword.getToken());
+        System.out.println("the foundPassword token is: " + token);
         foundPassword.setPassword(passwordServiceZ.decryptPassword(foundPassword.getPassword()));
         return mapToUnlockPassword(foundPassword);
     }
