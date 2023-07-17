@@ -33,13 +33,12 @@ public class PasswordServiceZImpl implements PasswordServiceZ {
    private final TokenRepository tokenRepository;
 
     public String decryptPassword(String encodedPassword) {
-        byte[] decodedBytes = Base64.getDecoder().decode(encodedPassword.getBytes(StandardCharsets.UTF_8));
+    byte[] decodedBytes = Base64.getDecoder().decode(encodedPassword.getBytes(StandardCharsets.UTF_8));
      return  new String(decodedBytes);}
 
 
     private String encryptPassword(String password) {
         if (password.contains(" "))throw new PasswordException("Encrypt ()-->  invalid password input");
-//        String name = password.replace(" ","_______");
         byte[] encodedBytes = Base64.getEncoder().encode(password.getBytes(StandardCharsets.UTF_8));
        return new String(encodedBytes);
     }
