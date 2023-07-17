@@ -62,7 +62,7 @@ public class AppUserServiceImpl implements AppUserService {
     @Override
     public Token generateAccessToken(String passwordLabel, String appUserEmail) {
         AppUser appUser = findAppUserByEmail(appUserEmail);
-  Token token =passwordServiceZ.tokenGenerator(passwordLabel);
+  Token token = passwordServiceZ.tokenGenerator(passwordLabel);
         appUser.setToken(token.getToken());
         appUserRepositoryZ.save(appUser);
         return token;

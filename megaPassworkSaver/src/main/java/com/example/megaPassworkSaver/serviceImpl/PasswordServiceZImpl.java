@@ -33,15 +33,13 @@ public class PasswordServiceZImpl implements PasswordServiceZ {
    private final TokenRepository tokenRepository;
 
     public String decryptPassword(String encodedPassword) {
-        System.out.println("(encripted)-->  "+encryptPassword(encodedPassword));
-        byte[] decodedBytes = Base64.getDecoder().decode(encryptPassword(encodedPassword).getBytes(StandardCharsets.UTF_8));
-
+        byte[] decodedBytes = Base64.getDecoder().decode(encodedPassword.getBytes(StandardCharsets.UTF_8));
         //  byte[] decodedBytes = Base64.getDecoder().decode(encodedPassword.getBytes(StandardCharsets.UTF_8));
      return  new String(decodedBytes);}
 
 
     private String encryptPassword(String password) {
-        if (password.contains(" "))throw new PasswordException("invalid password input");
+        if (password.contains(" "))throw new PasswordException("Encrypt ()-->  invalid password input");
 //        String name = password.replace(" ","_______");
         byte[] encodedBytes = Base64.getEncoder().encode(password.getBytes(StandardCharsets.UTF_8));
        return new String(encodedBytes);
@@ -54,6 +52,7 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
 
     @Override
     public Password createPassword(Password password2) {
+        if (password2.getPassword().contains(" ")) throw new PasswordException("Create Password()-> invalid Password");
         String encryptedPassword = encryptPassword(password2.getPassword());
         password2.setCreatedAt(LocalDateTime.now());
         password2.setPassword(encryptedPassword);
@@ -82,11 +81,9 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
 @Transactional
     public Token tokenGenerator(String passwordLabel) {
         Password foundPassword = findPassword(passwordLabel);
-        String password =passwordLabel.replace(" ","&");
-         String hashLabel = encryptPassword(password);
          Token token = Token.builder()
             .generatedAt(LocalDateTime.now())
-            .token(hashLabel)
+            .token(encryptPassword(passwordLabel.replace(" ","&").substring(0,6)))
            .expiredAt(LocalDateTime.now())
             .build();
       foundPassword.setToken(token.getToken());
