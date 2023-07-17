@@ -13,8 +13,9 @@ import com.example.megaPassworkSaver.service.AppUserService;
 import com.example.megaPassworkSaver.service.PasswordServiceZ;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
+@Slf4j
 @Transactional
 @Service
 @RequiredArgsConstructor
@@ -71,8 +72,8 @@ public class AppUserServiceImpl implements AppUserService {
     @Override
     public UnlockPassword getPasswordByLabel(String passwordLabel, String token) {
         Password foundPassword = passwordServiceZ.findPassword(passwordLabel);
-        if (!foundPassword.getToken().equals(token)) return mapToUnlockPassword(foundPassword);
-        foundPassword.setPassword(passwordServiceZ.decryptPassword(foundPassword.getPassword()));
+log.info("i got here");
+     //   foundPassword.setPassword(passwordServiceZ.decryptPassword(foundPassword.getPassword()));
         return mapToUnlockPassword(foundPassword);
     }
 private UnlockPassword mapToUnlockPassword(Password password){

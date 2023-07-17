@@ -89,8 +89,8 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
       foundPassword.setToken(token.getToken());
       token.setPassword(foundPassword);
       passwordRepository.save(foundPassword);
-//      return token;
-      return tokenRepository.save(token);
+      return token;
+   //   return tokenRepository.save(token);
   }
 
 
