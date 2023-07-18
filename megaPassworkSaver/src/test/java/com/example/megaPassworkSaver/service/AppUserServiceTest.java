@@ -94,7 +94,7 @@ private  AppUserService appUserService;
     appUserService.generateAccessToken("my github password","samuelshola14@gmail.com")
     .getToken()).getPassword());
     }
-    @Test
+    @Test 
     void tesThatAppUserCanDeleteAllPassword(){
 
       assertEquals(0,  appUserService.deleteAllPassword("marthins4@gmail.com",

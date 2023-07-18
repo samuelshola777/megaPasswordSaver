@@ -4,6 +4,7 @@ import com.example.megaPassworkSaver.data.model.Password;
 import com.example.megaPassworkSaver.data.model.Token;
 import com.example.megaPassworkSaver.data.repository.PasswordRepository;
 import com.example.megaPassworkSaver.data.repository.TokenRepository;
+import com.example.megaPassworkSaver.dto.response.PasswordResponse;
 import com.example.megaPassworkSaver.exception.AppUserException;
 import com.example.megaPassworkSaver.exception.PasswordException;
 import com.example.megaPassworkSaver.service.PasswordServiceZ;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.Base64;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -98,5 +100,9 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
        if ( passwordRepository.findByPasswordLabel(passwordLabel) != null) throw new PasswordException("Password label already exists");
   }
 
+
+  public List<PasswordResponse> viewAllPassword(String email, String token){
+
+  }
 
 }
