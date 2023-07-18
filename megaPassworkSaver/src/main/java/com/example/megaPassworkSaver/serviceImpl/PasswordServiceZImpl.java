@@ -4,6 +4,7 @@ import com.example.megaPassworkSaver.data.model.Password;
 import com.example.megaPassworkSaver.data.model.Token;
 import com.example.megaPassworkSaver.data.repository.PasswordRepository;
 import com.example.megaPassworkSaver.data.repository.TokenRepository;
+import com.example.megaPassworkSaver.dto.request.PageRequestDto;
 import com.example.megaPassworkSaver.dto.response.PasswordResponse;
 import com.example.megaPassworkSaver.exception.AppUserException;
 import com.example.megaPassworkSaver.exception.PasswordException;
@@ -16,9 +17,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.Base64;
@@ -101,8 +104,9 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
   }
 
 
-  public List<PasswordResponse> viewAllPassword(String email, String token){
-
+  public Page<PasswordResponse> viewAllPassword(PageRequestDto pageRequestDto){
+      Page pageAble = new PageRequestDto().getPageRequest(pageRequestDto);
+      Page<Password> listOfPassword = passwordRepository.findAll(pageAble);
   }
 
 }
