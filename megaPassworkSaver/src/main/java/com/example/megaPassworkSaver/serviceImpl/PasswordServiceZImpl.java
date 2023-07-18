@@ -108,8 +108,12 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
   public Page<PasswordResponse> viewAllPassword(PageRequestDto pageRequestDto){
       Pageable pageAble = new  PageRequestDto().getPageRequest(pageRequestDto);
       Page<Password> listOfPassword = passwordRepository.findAll(pageAble);
-      if (findPassword(pageRequestDto.))
-    return (Page<PasswordResponse>) listOfPassword.stream().map(password -> mapToUnlockPassword(password) );
+    return (Page<PasswordResponse>) listOfPassword.stream().map(this::mapToUnlockPasswordWithWrongToken);
+  }
+  public Page<PasswordResponse> viewAllPasswordWithWrongToken(PageRequestDto pageRequestDto){
+      Pageable pageAble = new  PageRequestDto().getPageRequest(pageRequestDto);
+      Page<Password> listOfPassword = passwordRepository.findAll(pageAble);
+    return (Page<PasswordResponse>) listOfPassword.stream().map(this::mapToUnlockPassword);
   }
 
     public UnlockPassword mapToUnlockPassword(Password password){
@@ -131,6 +135,9 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
                 .passwordLabel(password.getPasswordLabel())
                 .password(password.getPassword())
                 .build();
+    }
+    private Token findTokenByToken(String token) {
+       return tokenRepository.findByToken(token);
     }
 
 }
