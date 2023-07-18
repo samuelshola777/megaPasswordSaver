@@ -6,6 +6,7 @@ import com.example.megaPassworkSaver.data.model.Token;
 import com.example.megaPassworkSaver.data.repository.AppUserRepositoryZ;
 import com.example.megaPassworkSaver.dto.UnlockPassword;
 import com.example.megaPassworkSaver.dto.request.AppUserRequest;
+import com.example.megaPassworkSaver.dto.request.PageRequestDto;
 import com.example.megaPassworkSaver.dto.response.AppUserResponse;
 import com.example.megaPassworkSaver.exception.EmailAlreadyExistException;
 import com.example.megaPassworkSaver.exception.RegistrationException;
@@ -14,6 +15,7 @@ import com.example.megaPassworkSaver.service.PasswordServiceZ;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -87,9 +89,16 @@ public class AppUserServiceImpl implements AppUserService {
         return findAppUserByEmail(mail).getListOfPasswords().size();
     }
 
+    @Override
+    public Page<UnlockPassword> getAllPasswordWithWrongToken(PageRequestDto pageRequestDto) {
+        if (!findAppUserByEmail(pageRequestDto.getAppUserEmail()).getToken().equals(pageRequestDto.getToken())) return passwordServiceZ.
+        return null;
+    }
 
-
-
+    @Override
+    public Page<UnlockPassword> getAllPassword(PageRequestDto pageRequestDto) {
+        return null;
+    }
 
 
     private AppUserResponse mapToAppUserResponse(AppUser foundUser) {
