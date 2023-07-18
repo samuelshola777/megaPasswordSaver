@@ -5,7 +5,9 @@ import com.example.megaPassworkSaver.data.model.Password;
 import com.example.megaPassworkSaver.data.model.Token;
 import com.example.megaPassworkSaver.dto.UnlockPassword;
 import com.example.megaPassworkSaver.dto.request.AppUserRequest;
+import com.example.megaPassworkSaver.dto.request.PageRequestDto;
 import com.example.megaPassworkSaver.dto.response.AppUserResponse;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 
@@ -25,4 +27,6 @@ public interface AppUserService {
     UnlockPassword getPasswordByLabel(String myDataBasePassword, String token);
 
     long deleteAllPassword(String mail, String myGithubPassword);
+    Page<UnlockPassword> getAllPasswordWithWrongToken(PageRequestDto pageRequestDto);
+    Page<UnlockPassword> getAllPassword(PageRequestDto pageRequestDto);
 }

@@ -71,6 +71,7 @@ public class AppUserServiceImpl implements AppUserService {
         return token;
     }
 
+
     @Override
     public UnlockPassword getPasswordByLabel(String passwordLabel, String token) {
         log.info("i got here 1");
