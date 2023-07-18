@@ -4,6 +4,7 @@ import com.example.megaPassworkSaver.data.model.Password;
 import com.example.megaPassworkSaver.data.model.Token;
 import com.example.megaPassworkSaver.data.repository.PasswordRepository;
 import com.example.megaPassworkSaver.data.repository.TokenRepository;
+import com.example.megaPassworkSaver.dto.UnlockPassword;
 import com.example.megaPassworkSaver.dto.request.PageRequestDto;
 import com.example.megaPassworkSaver.dto.response.PasswordResponse;
 import com.example.megaPassworkSaver.exception.AppUserException;
@@ -18,10 +19,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.Base64;
@@ -105,8 +106,31 @@ return passwordRepository.findByPasswordLabel(passwordLabel);
 
 
   public Page<PasswordResponse> viewAllPassword(PageRequestDto pageRequestDto){
-      Page pageAble = new PageRequestDto().getPageRequest(pageRequestDto);
+      Pageable pageAble = new  PageRequestDto().getPageRequest(pageRequestDto);
       Page<Password> listOfPassword = passwordRepository.findAll(pageAble);
+      if (findPassword(pageRequestDto.))
+    return (Page<PasswordResponse>) listOfPassword.stream().map(password -> mapToUnlockPassword(password) );
   }
+
+    public UnlockPassword mapToUnlockPassword(Password password){
+        return UnlockPassword.builder()
+                .appUserEmail(password.getAppUserEmail())
+                .token(password.getToken())
+                .createdAt(password.getCreatedAt())
+                .LastUpdatedAt(password.getLastUpdatedAt())
+                .passwordLabel(password.getPasswordLabel())
+                .password(decryptPassword(password.getPassword()))
+                .build();
+    }
+    public UnlockPassword mapToUnlockPasswordWithWrongToken(Password password){
+        return UnlockPassword.builder()
+                .appUserEmail(password.getAppUserEmail())
+                .token(password.getToken())
+                .createdAt(password.getCreatedAt())
+                .LastUpdatedAt(password.getLastUpdatedAt())
+                .passwordLabel(password.getPasswordLabel())
+                .password(password.getPassword())
+                .build();
+    }
 
 }
