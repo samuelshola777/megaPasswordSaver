@@ -17,8 +17,8 @@ public interface PasswordServiceZ {
     Token tokenGenerator(String passwordLabel);
    UnlockPassword mapToUnlockPassword(Password foundPassword);
    UnlockPassword mapToUnlockPasswordWithWrongToken(Password foundPassword );
-     Page<PasswordResponse> viewAllPasswordWithWrongToken(PageRequestDto pageRequestDto);
-    Page<PasswordResponse> viewAllPassword(PageRequestDto pageRequestDto);
+     Page<UnlockPassword> viewAllPasswordWithWrongToken(PageRequestDto pageRequestDto);
+    Page<UnlockPassword> viewAllPassword(PageRequestDto pageRequestDto);
      String decryptPassword(String encodedPassword);
     Password findPassword(String passwordLabel);
 
