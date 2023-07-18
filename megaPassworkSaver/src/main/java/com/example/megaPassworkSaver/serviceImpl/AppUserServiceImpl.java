@@ -103,7 +103,7 @@ public class AppUserServiceImpl implements AppUserService {
 
     private AppUserResponse mapToAppUserResponse(AppUser foundUser) {
         return AppUserResponse.builder()
-                .userName(foundUser.getUserName())
+                .userName(foundUser.getUsername())
                 .numberOfPasswords(foundUser.getNumberOfPasswords())
                 .build();
 }
@@ -128,7 +128,7 @@ public class AppUserServiceImpl implements AppUserService {
         private AppUserResponse mapAppUserToResponse(AppUser appUser){
         return AppUserResponse.builder()
                 .numberOfPasswords(appUser.getListOfPasswords().size())
-                .userName(appUser.getUserName())
+                .userName(appUser.getUsername())
                 .build();
         }
 
