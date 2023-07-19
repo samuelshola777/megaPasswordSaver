@@ -92,9 +92,7 @@ public class AppUserServiceImpl implements AppUserService {
 
     @Override
     public Page<UnlockPassword> getAllPassword(PageRequestDto pageRequestDto) {
-        if (!findAppUserByEmail
-                (pageRequestDto.getAppUserEmail()).
-                getToken().equals(pageRequestDto.getToken())) return passwordServiceZ.viewAllPasswordWithWrongToken(pageRequestDto);
+        if (!findAppUserByEmail(pageRequestDto.getAppUserEmail()).getToken().equals(pageRequestDto.getToken())) return passwordServiceZ.viewAllPasswordWithWrongToken(pageRequestDto);
         return passwordServiceZ.viewAllPassword(pageRequestDto);
     }
 

@@ -23,8 +23,10 @@ public class AppUser implements UserDetails {
     private long id;
     @OneToMany( cascade = CascadeType.ALL, mappedBy = "appUser", orphanRemoval = true)
     private List<Password> listOfPasswords = new ArrayList<>();
+    @Column(unique = true)
     private String userName;
     private String unlockPassword;
+    @Column(unique = true)
     private String emailAddress;
     private String token;
 private  int numberOfPasswords ;
