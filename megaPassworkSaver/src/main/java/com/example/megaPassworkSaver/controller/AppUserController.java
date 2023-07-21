@@ -31,8 +31,8 @@ public class AppUserController {
         return new ResponseEntity<>(appUserService.countUsers(), HttpStatus.OK);
     }
     @GetMapping("/countMyPassword")
-    public ResponseEntity<Long> countMyPassword(){
-        return new ResponseEntity<>(appUserService.countMyPassword(), HttpStatus.OK);
+    public ResponseEntity<Long> countMyPassword(String userEmail){
+        return new ResponseEntity<>(appUserService.countMyPassword(userEmail), HttpStatus.OK);
     }
 
 }
