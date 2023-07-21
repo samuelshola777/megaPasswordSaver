@@ -1,6 +1,7 @@
 package com.example.megaPassworkSaver.controller;
 
 import com.example.megaPassworkSaver.data.model.Password;
+import com.example.megaPassworkSaver.data.model.Token;
 import com.example.megaPassworkSaver.dto.request.AppUserRequest;
 import com.example.megaPassworkSaver.dto.response.AppUserResponse;
 import com.example.megaPassworkSaver.service.AppUserService;
@@ -36,5 +37,8 @@ public class AppUserController {
     return new ResponseEntity<>(appUserService.deletePasswordByLabel(passwordLabel),HttpStatus.ACCEPTED);
 
 }
+@GetMapping("/generateToken")
+    public ResponseEntity<Token> generateToken(String passwordLabel, String appUserEmail)
+
 
 }
