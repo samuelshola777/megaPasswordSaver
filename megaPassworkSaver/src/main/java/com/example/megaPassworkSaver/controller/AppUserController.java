@@ -20,5 +20,6 @@ public class AppUserController {
     public ResponseEntity<AppUserResponse> registerAppUser(@RequestBody AppUserRequest appUserRequest){
         return new ResponseEntity<>(appUserService.registerNewUser(appUserRequest), HttpStatus.CREATED);
     }
+    @RequestMapping("/createPassword")
 
 }
