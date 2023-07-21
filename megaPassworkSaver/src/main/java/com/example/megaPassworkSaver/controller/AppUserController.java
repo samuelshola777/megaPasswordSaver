@@ -38,7 +38,9 @@ public class AppUserController {
 
 }
 @GetMapping("/generateToken")
-    public ResponseEntity<Token> generateToken(String passwordLabel, String appUserEmail)
+    public ResponseEntity<Token> generateToken(String passwordLabel, String appUserEmail){
+
+}
 
 
 }
