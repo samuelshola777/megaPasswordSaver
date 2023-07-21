@@ -4,6 +4,7 @@ import com.example.megaPassworkSaver.dto.request.AppUserRequest;
 import com.example.megaPassworkSaver.dto.response.AppUserResponse;
 import com.example.megaPassworkSaver.service.AppUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ public class AppUserController {
 
 
     public ResponseEntity<AppUserResponse> registerAppUser(@RequestBody AppUserRequest appUserRequest){
-        return new ResponseEntity<>(appUserService.registerNewUser(appUserRequest));
+        return new ResponseEntity<>(appUserService.registerNewUser(appUserRequest), HttpStatus.CREATED);
     }
 
 }
