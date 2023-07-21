@@ -35,4 +35,5 @@ public class AppUserController {
         return new ResponseEntity<>(appUserService.countMyPassword(userEmail), HttpStatus.OK);
     }
 
+
 }
