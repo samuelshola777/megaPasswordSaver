@@ -39,7 +39,7 @@ public class AppUserController {
 }
 @GetMapping("/generateToken")
     public ResponseEntity<Token> generateToken(String passwordLabel, String appUserEmail){
-
+return new ResponseEntity<>(appUserService.generateAccessToken(passwordLabel, appUserEmail),HttpStatus.FOUND);
 }
 
 
