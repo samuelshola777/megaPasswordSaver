@@ -33,7 +33,7 @@ public class AppUserController {
     }
 @DeleteMapping("/deletePassword")
     public ResponseEntity<AppUserResponse> deleteMyPassword(String passwordLabel){
-
+    return new ResponseEntity<>(appUserService.deletePasswordByLabel(passwordLabel),HttpStatus.ACCEPTED);
 
 }
 
