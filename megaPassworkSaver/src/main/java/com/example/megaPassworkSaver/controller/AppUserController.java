@@ -50,6 +50,8 @@ return new ResponseEntity<>(appUserService.getPasswordByLabel(passwordLabel, tok
 }
 
 @GetMapping("/gettAllPssword")
-    public ResponseEntity<Page<UnlockPassword>>
+    public ResponseEntity<Page<UnlockPassword>> viewAllPassword(@RequestBody PageRequestDto pageRequestDto){
+
+}
 
 }
