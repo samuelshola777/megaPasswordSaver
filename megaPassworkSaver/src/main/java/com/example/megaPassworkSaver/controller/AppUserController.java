@@ -1,5 +1,6 @@
 package com.example.megaPassworkSaver.controller;
 
+import com.example.megaPassworkSaver.data.model.AppUser;
 import com.example.megaPassworkSaver.data.model.Password;
 import com.example.megaPassworkSaver.data.model.Token;
 import com.example.megaPassworkSaver.dto.UnlockPassword;
@@ -54,5 +55,7 @@ return new ResponseEntity<>(appUserService.getPasswordByLabel(passwordLabel, tok
 return new ResponseEntity<>(appUserService.getAllPassword(pageRequestDto),HttpStatus.OK);
 }
 @GetMapping("findByEmail")
-public ResponseEntity<>
+public ResponseEntity<AppUser> findByEmail(@RequestParam String email){
+
+}
 }
