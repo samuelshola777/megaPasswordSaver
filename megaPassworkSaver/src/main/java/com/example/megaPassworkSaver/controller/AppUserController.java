@@ -8,6 +8,7 @@ import com.example.megaPassworkSaver.dto.request.PageRequestDto;
 import com.example.megaPassworkSaver.dto.response.AppUserResponse;
 import com.example.megaPassworkSaver.service.AppUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -47,9 +48,9 @@ return new ResponseEntity<>(appUserService.generateAccessToken(passwordLabel, ap
 public ResponseEntity<UnlockPassword> unlockPassword(@RequestParam String passwordLabel, @RequestParam String token){
 return new ResponseEntity<>(appUserService.getPasswordByLabel(passwordLabel, token),HttpStatus.FOUND);
 }
-@GetMapping("/getAllPassword")
-public ResponseEntity<UnlockPassword> getAllPassword(@RequestBody PageRequestDto pageRequestDto){
-    return new
+@GetMapping("/getAllPas<sword")
+public ResponseEntity<<Page>UnlockPassword> getAllPassword(@RequestBody PageRequestDto pageRequestDto){
+    return new ResponseEntity<>(appUserService.getAllPassword(pageRequestDto), HttpStatus.OK);
 }
 
 }
