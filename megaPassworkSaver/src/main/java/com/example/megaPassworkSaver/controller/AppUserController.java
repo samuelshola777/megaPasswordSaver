@@ -4,6 +4,7 @@ import com.example.megaPassworkSaver.data.model.Password;
 import com.example.megaPassworkSaver.data.model.Token;
 import com.example.megaPassworkSaver.dto.UnlockPassword;
 import com.example.megaPassworkSaver.dto.request.AppUserRequest;
+import com.example.megaPassworkSaver.dto.request.PageRequestDto;
 import com.example.megaPassworkSaver.dto.response.AppUserResponse;
 import com.example.megaPassworkSaver.service.AppUserService;
 import lombok.RequiredArgsConstructor;
@@ -47,5 +48,8 @@ public ResponseEntity<UnlockPassword> unlockPassword(@RequestParam String passwo
 return new ResponseEntity<>(appUserService.getPasswordByLabel(passwordLabel, token),HttpStatus.FOUND);
 }
 @GetMapping("/getAllPassword")
+public ResponseEntity<UnlockPassword> getAllPassword(@RequestBody PageRequestDto pageRequestDto){
+
+}
 
 }
