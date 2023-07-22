@@ -29,5 +29,6 @@ public interface AppUserService {
 
     long deleteAllPassword(String mail, String myGithubPassword);
     Page<UnlockPassword> getAllPassword(PageRequestDto pageRequestDto);
+    AppUser findAppUserByEmail(String email);
 
 }

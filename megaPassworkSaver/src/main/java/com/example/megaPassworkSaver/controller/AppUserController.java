@@ -56,6 +56,6 @@ return new ResponseEntity<>(appUserService.getAllPassword(pageRequestDto),HttpSt
 }
 @GetMapping("findByEmail")
 public ResponseEntity<AppUser> findByEmail(@RequestParam String email){
-
+ return new ResponseEntity<>(appUserService.findAppUserByEmail(email),HttpStatus.OK);
 }
 }
