@@ -43,4 +43,5 @@ return new ResponseEntity<>(appUserService.generateAccessToken(passwordLabel, ap
 }
 
 
+
 }
