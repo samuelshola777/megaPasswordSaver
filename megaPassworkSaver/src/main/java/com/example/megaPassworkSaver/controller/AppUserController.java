@@ -46,6 +46,6 @@ return new ResponseEntity<>(appUserService.generateAccessToken(passwordLabel, ap
 public ResponseEntity<UnlockPassword> unlockPassword(@RequestParam String passwordLabel, @RequestParam String token){
 return new ResponseEntity<>(appUserService.getPasswordByLabel(passwordLabel, token),HttpStatus.FOUND);
 }
-
+@GetMapping("/getAllPassword")
 
 }
