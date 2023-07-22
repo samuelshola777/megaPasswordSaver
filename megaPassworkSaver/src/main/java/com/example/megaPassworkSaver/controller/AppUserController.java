@@ -2,6 +2,7 @@ package com.example.megaPassworkSaver.controller;
 
 import com.example.megaPassworkSaver.data.model.Password;
 import com.example.megaPassworkSaver.data.model.Token;
+import com.example.megaPassworkSaver.dto.UnlockPassword;
 import com.example.megaPassworkSaver.dto.request.AppUserRequest;
 import com.example.megaPassworkSaver.dto.response.AppUserResponse;
 import com.example.megaPassworkSaver.service.AppUserService;
@@ -42,7 +43,7 @@ public class AppUserController {
 return new ResponseEntity<>(appUserService.generateAccessToken(passwordLabel, appUserEmail),HttpStatus.FOUND);
 }
 @GetMapping("/userPassword")
-    public ResponseEntity<>
+    public ResponseEntity<UnlockPassword> unlockPassword(@RequestParam)
 
 
 }
