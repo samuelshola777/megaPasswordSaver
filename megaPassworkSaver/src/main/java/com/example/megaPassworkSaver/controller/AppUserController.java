@@ -53,5 +53,6 @@ return new ResponseEntity<>(appUserService.getPasswordByLabel(passwordLabel, tok
     public ResponseEntity<Page<UnlockPassword>> viewAllPassword(@RequestBody PageRequestDto pageRequestDto){
 return new ResponseEntity<>(appUserService.getAllPassword(pageRequestDto),HttpStatus.OK);
 }
-
+@GetMapping("findByEmail")
+public ResponseEntity<>
 }
