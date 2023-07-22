@@ -49,6 +49,7 @@ public ResponseEntity<UnlockPassword> unlockPassword(@RequestParam String passwo
 return new ResponseEntity<>(appUserService.getPasswordByLabel(passwordLabel, token),HttpStatus.FOUND);
 }
 
-
+@GetMapping("/gettAllPssword")
+    public ResponseEntity<Page<UnlockPassword>>
 
 }
