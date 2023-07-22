@@ -42,6 +42,7 @@ public class AppUserController {
 return new ResponseEntity<>(appUserService.generateAccessToken(passwordLabel, appUserEmail),HttpStatus.FOUND);
 }
 @GetMapping("/userPassword")
+    public ResponseEntity<>
 
 
 }
