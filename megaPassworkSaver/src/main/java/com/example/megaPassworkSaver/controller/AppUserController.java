@@ -50,7 +50,7 @@ public ResponseEntity<UnlockPassword> unlockPassword(@RequestParam String passwo
 return new ResponseEntity<>(appUserService.getPasswordByLabel(passwordLabel, token),HttpStatus.FOUND);
 }
 
-@GetMapping("/gettAllPssword")
+@GetMapping("/gettAllPassword")
     public ResponseEntity<Page<UnlockPassword>> viewAllPassword(@RequestBody PageRequestDto pageRequestDto){
 return new ResponseEntity<>(appUserService.getAllPassword(pageRequestDto),HttpStatus.OK);
 }
