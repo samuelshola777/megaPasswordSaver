@@ -26,4 +26,6 @@ CREATE TABLE token(
     expired_at TIMEDATE(19),
     generated_at TIMEDATE(19),
     token VARCHAR(255) NOT NULL
+    password_id INT NOT NULL,
+    FOREIGN KEY (password_id) REFERENCES password(password_id)
 );
