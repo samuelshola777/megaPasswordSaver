@@ -70,6 +70,11 @@
 <!--			<version>9.8.1</version> &lt;!&ndash; Replace this with the specific version you are using &ndash;&gt;-->
 		</dependency>
 		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
 			<groupId>com.restfb</groupId>
 			<artifactId>restfb</artifactId>
 			<version>2.27.1</version>
