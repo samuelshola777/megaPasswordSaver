@@ -17,5 +17,6 @@ CREATE TABLE password(
     password_label VARCHAR(255) NOT NULL,
     app_user_id INT NOT NULL,
     FOREIGN KEY (app_user_id) REFERENCES app_user(id),
-
+    app_user_email VARCHAR(255) NOT NULL,
+    token VARCHAR(255) NOT NULL
 );
