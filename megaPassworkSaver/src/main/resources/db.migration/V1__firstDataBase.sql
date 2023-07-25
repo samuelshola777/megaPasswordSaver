@@ -26,5 +26,5 @@ CREATE TABLE token(
     generated_at TIMESTAMP,
     token VARCHAR(255) NOT NULL,
     password_id INT NOT NULL,
-    FOREIGN KEY (password_id) REFERENCES password(password_id)
+    FOREIGN KEY (password_id) REFERENCES password(id)
 );
