@@ -67,7 +67,7 @@
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
-			<version>5.0.7</version> <!-- Replace this with the specific version you are using -->
+<!--			<version>9.8.1</version> &lt;!&ndash; Replace this with the specific version you are using &ndash;&gt;-->
 		</dependency>
 		<dependency>
 			<groupId>com.restfb</groupId>
