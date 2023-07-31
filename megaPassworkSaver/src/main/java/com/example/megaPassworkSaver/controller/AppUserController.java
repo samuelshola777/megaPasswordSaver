@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class AppUserController {
     private final AppUserService appUserService;
 
-@RequestMapping("/registerUser")
+@PostMapping("/registerUser")
     public ResponseEntity<AppUserResponse> registerAppUser(@RequestBody AppUserRequest appUserRequest){
         return new ResponseEntity<>(appUserService.registerNewUser(appUserRequest), HttpStatus.CREATED);
     }
