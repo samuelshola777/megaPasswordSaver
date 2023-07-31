@@ -103,6 +103,7 @@ public class AppUserServiceImpl implements AppUserService {
         return AppUserResponse.builder()
                 .userName(foundUser.getUsername())
                 .numberOfPasswords(foundUser.getNumberOfPasswords())
+
                 .build();
 }
     private void ifEmailAlreadyExist(String emailAddress) {
@@ -121,6 +122,7 @@ public class AppUserServiceImpl implements AppUserService {
         return AppUser.builder()
                 .userName(appUserRequest.getUserName())
                 .emailAddress(appUserRequest.getEmailAddress())
+                .unlockPassword(appUserRequest.getUnlockPassword())
                 .build();
         }
         private AppUserResponse mapAppUserToResponse(AppUser appUser){
