@@ -32,8 +32,8 @@ public class AppUserController {
     public ResponseEntity<Long> countNumberOfPassword(){
         return new ResponseEntity<>(appUserService.countUsers(), HttpStatus.OK);
     }
-    @GetMapping("/countMyPassword")
-    public ResponseEntity<Long> countMyPassword(String userEmail){
+    @GetMapping("/countMyPassword{userEmail}")
+    public ResponseEntity<Long> countMyPassword(@PathVariable String userEmail){
         return new ResponseEntity<>(appUserService.countMyPassword(userEmail), HttpStatus.OK);
     }
 @DeleteMapping("/deletePassword")
