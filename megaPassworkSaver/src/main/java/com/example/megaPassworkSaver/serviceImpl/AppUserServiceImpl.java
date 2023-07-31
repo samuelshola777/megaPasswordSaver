@@ -34,7 +34,7 @@ public class AppUserServiceImpl implements AppUserService {
     @Override
     public AppUserResponse registerNewUser(AppUserRequest appUserRequest3) {
         ifEmailAlreadyExist(appUserRequest3.getEmailAddress());
-        passwordVerifier(appUserRequest3.getUnlockPassword());
+      //  passwordVerifier(appUserRequest3.getUnlockPassword());
         AppUser mappedAppUser = mapRequestToAppUser(appUserRequest3);
         return mapAppUserToResponse(appUserRepositoryZ.save(mappedAppUser));
     }
