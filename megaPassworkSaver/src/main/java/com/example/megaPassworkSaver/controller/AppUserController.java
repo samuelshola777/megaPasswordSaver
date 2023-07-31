@@ -1,5 +1,6 @@
 package com.example.megaPassworkSaver.controller;
 
+import com.electronwill.nightconfig.core.conversion.Path;
 import com.example.megaPassworkSaver.data.model.AppUser;
 import com.example.megaPassworkSaver.data.model.Password;
 import com.example.megaPassworkSaver.data.model.Token;
@@ -32,21 +33,21 @@ public class AppUserController {
     public ResponseEntity<Long> countNumberOfPassword(){
         return new ResponseEntity<>(appUserService.countUsers(), HttpStatus.OK);
     }
-    @GetMapping("/countMyPassword{userEmail}")
+    @GetMapping("/countMyPassword/{userEmail}")
     public ResponseEntity<Long> countMyPassword(@PathVariable String userEmail){
         return new ResponseEntity<>(appUserService.countMyPassword(userEmail), HttpStatus.OK);
     }
-@DeleteMapping("/deletePassword")
-    public ResponseEntity<AppUserResponse> deleteMyPassword(String passwordLabel){
+@DeleteMapping("/deletePassword/{passwordLabel}")
+    public ResponseEntity<AppUserResponse> deleteMyPassword(@PathVariable String passwordLabel){
     return new ResponseEntity<>(appUserService.deletePasswordByLabel(passwordLabel),HttpStatus.ACCEPTED);
 
 }
-@GetMapping("/generateToken")
-    public ResponseEntity<Token> generateToken(String passwordLabel, String appUserEmail){
+@GetMapping("/generateToken/{passwordLabel},{appUserEmail}")
+    public ResponseEntity<Token> generateToken(@PathVariable String passwordLabel,@PathVariable  String appUserEmail){
 return new ResponseEntity<>(appUserService.generateAccessToken(passwordLabel, appUserEmail),HttpStatus.FOUND);
 }
-@GetMapping("/userPassword")
-public ResponseEntity<UnlockPassword> unlockPassword(@RequestParam String passwordLabel, @RequestParam String token){
+@GetMapping("/userPassword/{passwordLabel},{token}")
+public ResponseEntity<UnlockPassword> unlockPassword(@PathVariable String passwordLabel, @PathVariable String token){
 return new ResponseEntity<>(appUserService.getPasswordByLabel(passwordLabel, token),HttpStatus.FOUND);
 }
 
