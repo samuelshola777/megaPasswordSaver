@@ -20,7 +20,6 @@ public class Password {
     private long id;
     @ManyToOne
     private AppUser appUser;
-    @Column(unique = true)
     private String appUserEmail;
     private String token;
     @OneToMany( cascade = CascadeType.ALL, mappedBy = "password", orphanRemoval = true)

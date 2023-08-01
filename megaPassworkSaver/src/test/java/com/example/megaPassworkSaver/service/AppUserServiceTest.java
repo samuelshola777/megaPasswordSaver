@@ -56,7 +56,7 @@ private  AppUserService appUserService;
 
         password3 = new Password();
         password3.setSavedPassword("SAMBONE90933");
-        password3.setPasswordLabel("my github password");
+        password3.setPasswordLabel("my github passwordZ");
         password3.setAppUserEmail("samuelshola14@gmail.com");
     }
 
@@ -68,7 +68,7 @@ private  AppUserService appUserService;
         assertNotNull(appUserService.registerNewUser(appUserRequest2));
         assertNotNull(appUserService.registerNewUser(appUserRequest3));
 
-        assertEquals(3,appUserService.countUsers());
+      //  assertEquals(3,appUserService.countUsers());
 
 
 

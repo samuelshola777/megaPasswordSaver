@@ -26,7 +26,6 @@ public class AppUser implements UserDetails {
     @Column(unique = true)
     private String userName;
     private String unlockPassword;
-    @Column(unique = true)
     private String emailAddress;
     private String token;
 private  int numberOfPasswords ;
