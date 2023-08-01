@@ -27,7 +27,7 @@ public class Password {
     private List<Token> listOfTokens = new ArrayList<>();
     private LocalDateTime createdAt;
     private LocalDateTime LastUpdatedAt;
-    private String password;
+    private String savedPassword;
     private String passwordLabel;
 
 }

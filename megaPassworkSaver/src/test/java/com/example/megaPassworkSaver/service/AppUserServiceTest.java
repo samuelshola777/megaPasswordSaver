@@ -2,9 +2,6 @@ package com.example.megaPassworkSaver.service;
 
 import com.example.megaPassworkSaver.data.model.Password;
 import com.example.megaPassworkSaver.dto.request.AppUserRequest;
-import jakarta.annotation.Nonnull;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,17 +45,17 @@ private  AppUserService appUserService;
     appUserRequest3.setPassword("goatAndPasswords879");
 
         password1 = new Password();
-        password1.setPassword("SAMUELSHOLA14@GMAIL.COM");
+        password1.setSavedPassword("SAMUELSHOLA14@GMAIL.COM");
         password1.setPasswordLabel("my data base password");
         password1.setAppUserEmail("marthins4@gmail.com");
 
         password2 = new Password();
         password2.setPasswordLabel("my facebook password");
         password2.setAppUserEmail("marthins4@gmail.com");
-        password2.setPassword("blueboat");
+        password2.setSavedPassword("blueboat");
 
         password3 = new Password();
-        password3.setPassword("SAMBONE90933");
+        password3.setSavedPassword("SAMBONE90933");
         password3.setPasswordLabel("my github password");
         password3.setAppUserEmail("samuelshola14@gmail.com");
     }

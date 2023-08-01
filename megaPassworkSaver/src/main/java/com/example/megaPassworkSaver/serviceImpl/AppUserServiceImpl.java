@@ -10,6 +10,7 @@ import com.example.megaPassworkSaver.dto.request.PageRequestDto;
 import com.example.megaPassworkSaver.dto.response.AppUserResponse;
 import com.example.megaPassworkSaver.dto.response.PasswordResponse;
 import com.example.megaPassworkSaver.exception.EmailAlreadyExistException;
+import com.example.megaPassworkSaver.exception.PasswordException;
 import com.example.megaPassworkSaver.exception.RegistrationException;
 import com.example.megaPassworkSaver.service.AppUserService;
 import com.example.megaPassworkSaver.service.PasswordServiceZ;
@@ -46,6 +47,7 @@ public class AppUserServiceImpl implements AppUserService {
 
     @Override
     public AppUserResponse userSavePassword(Password password1) {
+        if (password1.getAppUserEmail() == null) throw new PasswordException("please provide a user email");
         AppUser foundUser = findAppUserByEmail(password1.getAppUserEmail());
         password1.setAppUser(foundUser);
       Password createdPassword =  passwordServiceZ.createPassword(password1);
@@ -134,7 +136,7 @@ public class AppUserServiceImpl implements AppUserService {
 
         public AppUser findAppUserByEmail(String email){
         AppUser foundAppUser = appUserRepositoryZ.findByEmailAddress(email);
-            if (foundAppUser== null) throw new EmailAlreadyExistException("email already Exist");
+            if (foundAppUser== null) throw new EmailAlreadyExistException("email does  not exist");
             return foundAppUser;
         }
 

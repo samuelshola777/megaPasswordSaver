@@ -13,7 +13,7 @@ CREATE TABLE password(
     id SERIAL  PRIMARY KEY,
     last_updated_at DATETIME(19),
     created_at DATETIME(19),
-    password TEXT ,
+   saved_password TEXT ,
     password_label VARCHAR(255),
     app_user_id INT,
     FOREIGN KEY (app_user_id) REFERENCES app_user(id),
