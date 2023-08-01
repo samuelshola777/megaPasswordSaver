@@ -25,7 +25,7 @@ public class AppUserController {
     public ResponseEntity<AppUserResponse> registerAppUser(@RequestBody AppUserRequest appUserRequest){
         return new ResponseEntity<>(appUserService.registerNewUser(appUserRequest), HttpStatus.CREATED);
     }
-    @RequestMapping("/createPassword")
+    @PostMapping("/createPassword")
     public ResponseEntity<AppUserResponse> createNewPassword(@RequestBody Password password){
         return new ResponseEntity<>(appUserService.userSavePassword(password), HttpStatus.CREATED);
     }
@@ -55,8 +55,8 @@ return new ResponseEntity<>(appUserService.getPasswordByLabel(passwordLabel, tok
     public ResponseEntity<Page<UnlockPassword>> viewAllPassword(@RequestBody PageRequestDto pageRequestDto){
 return new ResponseEntity<>(appUserService.getAllPassword(pageRequestDto),HttpStatus.OK);
 }
-@GetMapping("findByEmail")
-public ResponseEntity<AppUser> findByEmail(@RequestParam String email){
+@GetMapping("findByEmail/{email}")
+public ResponseEntity<AppUser> findByEmail(@PathVariable String email){
  return new ResponseEntity<>(appUserService.findAppUserByEmail(email),HttpStatus.OK);
 }
 }
