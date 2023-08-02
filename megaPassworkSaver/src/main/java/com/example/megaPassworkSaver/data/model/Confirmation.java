@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -22,7 +23,12 @@ public class Confirmation {
     @CreatedDate
     private LocalDateTime createdAt;
     @OneToOne(targetEntity = AppUser.class, fetch = FetchType.LAZY)
-@JoinColumn(nullable = false, name = "user_id")
+@JoinColumn(nullable = false, name = "app_user_id")
     private AppUser appUser;
+public Confirmation(AppUser appUser){
+    this.appUser = appUser;
+    this.createdAt = LocalDateTime.now();
+    this.tokenC = UUID.randomUUID().toString();
 
+}
 }
