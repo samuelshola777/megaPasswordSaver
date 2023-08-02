@@ -9,11 +9,15 @@ import com.google.auth.http.HttpCredentialsAdapter;
 import com.google.auth.oauth2.GoogleCredentials;
 import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
+import jakarta.mail.Session;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.io.IOException;
+import java.util.Properties;
 
 @Service
 @Transactional
