@@ -28,6 +28,7 @@ public class AppUser implements UserDetails {
     private String unlockPassword;
     private String emailAddress;
     private String token;
+    private boolean isEnabled;
 private  int numberOfPasswords ;
 
     @Override
