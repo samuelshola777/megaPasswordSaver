@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReceiverMailInfo {
-  private   String receiverName;
-  private  String receiverEmail;
+public class MailInfo {
+  private   String name;
+  private  String email;
 }
