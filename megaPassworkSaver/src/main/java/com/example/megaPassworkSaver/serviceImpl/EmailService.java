@@ -1,5 +1,7 @@
 package com.example.megaPassworkSaver.serviceImpl;
 
+import com.google.api.client.googleapis.json.GoogleJsonError;
+import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
@@ -7,22 +9,27 @@ import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.GmailScopes;
 import com.google.auth.http.HttpCredentialsAdapter;
 import com.google.auth.oauth2.GoogleCredentials;
-import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
-import jakarta.mail.Session;
+import javax.mail.Session;
 import jakarta.transaction.Transactional;
+import org.apache.commons.codec.binary.Base64;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
-import javax.mail.internet.InternetAddress;
+import com.google.api.services.gmail.model.Message;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Properties;
+
 
 @Service
 @Transactional
 public class EmailService {
-    public Message sendEmail(String fromEmailAddress,String toEmailAddress) throws MessagingException, IOException {
+    @Autowired
+    Message message;
+    public Message sendEmail(String fromEmailAddress,String toEmailAddress, String header, String messagez) throws MessagingException, IOException, javax.mail.MessagingException {
         /* Load pre-authorized user credentials from the environment.
            TODO(developer) - See https://developers.google.com/identity for
             guides on implementing OAuth2 for your application.*/
@@ -56,8 +63,9 @@ public class EmailService {
         email.writeTo(buffer);
         byte[] rawMessageBytes = buffer.toByteArray();
         String encodedEmail = Base64.encodeBase64URLSafeString(rawMessageBytes);
-        Message message = new Message();
-        message.setRaw(encodedEmail);
+
+//        Message messageyt = new Message();
+//        message.setRaw(encodedEmail);
 
         try {
             // Create send message
@@ -78,4 +86,4 @@ public class EmailService {
     }
 }
 
-}
+
