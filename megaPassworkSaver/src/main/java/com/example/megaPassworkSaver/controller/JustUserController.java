@@ -6,10 +6,7 @@ import com.example.megaPassworkSaver.serviceImpl.HttpResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.time.LocalDateTime;
@@ -33,7 +30,18 @@ public class JustUserController {
                        .statusCode(HttpStatus.CREATED.value())
                        .build());
     }
-
+@GetMapping("/validtate")
+    public  ResponseEntity<HttpResponse> validateUser(@RequestParam("token")String token){
+   Boolean isSuccess = justUserService.verifyToken(token);
+    return  ResponseEntity.ok().body(
+            HttpResponse.builder()
+                    .timeStamp(LocalDateTime.now().toString())
+                    .data(Map.of("Validation successfully", isSuccess))
+                    .message("account verified successfully")
+                    .status(HttpStatus.OK)
+                    .statusCode(HttpStatus.OK.value())
+                    .build());
+}
 
 
 }
