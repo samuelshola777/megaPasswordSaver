@@ -1,6 +1,7 @@
 package com.example.megaPassworkSaver.data.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,10 +19,12 @@ public class Password {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @JsonIgnore
     @ManyToOne
     private AppUser appUser;
     private String appUserEmail;
     private String token;
+    @JsonIgnore
     @OneToMany( cascade = CascadeType.ALL, mappedBy = "password", orphanRemoval = true)
     private List<Token> listOfTokens = new ArrayList<>();
     private LocalDateTime createdAt;
