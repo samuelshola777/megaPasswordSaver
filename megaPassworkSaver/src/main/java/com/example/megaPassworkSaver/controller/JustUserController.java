@@ -30,8 +30,8 @@ public class JustUserController {
                        .statusCode(HttpStatus.CREATED.value())
                        .build());
     }
-@GetMapping("/validtate")
-    public  ResponseEntity<HttpResponse> validateUser(@RequestParam("token")String token){
+@GetMapping("/validate")
+    public  ResponseEntity<HttpResponse> validateUserAccount(@RequestParam("token")String token){
    Boolean isSuccess = justUserService.verifyToken(token);
     return  ResponseEntity.ok().body(
             HttpResponse.builder()
