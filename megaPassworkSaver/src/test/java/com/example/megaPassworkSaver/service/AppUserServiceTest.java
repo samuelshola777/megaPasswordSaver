@@ -98,5 +98,9 @@ private  AppUserService appUserService;
           appUserService.generateAccessToken("my data base password"
                   ,"marthins4@gmail.com").getToken()));
     }
+    @Test
+    void testThatAppUserCanBeDeletedByEmail(){
+        appUserService.deleteAppUserAccountByEmail("samuelshola14@gmail.com");
+    }
 
 }

@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface AppUserRepositoryZ extends JpaRepository<AppUser,Long> {
     AppUser findByEmailAddress(String email);
     boolean existsByEmailAddress(String email );
+
+    void deleteAppUserByEmailAddress(String email);
 }

@@ -140,8 +140,11 @@ public class AppUserServiceImpl implements AppUserService {
             return foundAppUser;
         }
 
+    @Override
+    public String deleteAppUserAccountByEmail(String email) {
+        appUserRepositoryZ.deleteAppUserByEmailAddress(email);
+        return "Delete successfully";
+    }
 
 
-
-
-        }
+}

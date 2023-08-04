@@ -23,7 +23,7 @@ public class AppUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @OneToMany( cascade = CascadeType.ALL, mappedBy = "appUser", orphanRemoval = true)
+    @OneToMany( cascade = CascadeType.DETACH, mappedBy = "appUser", orphanRemoval = true)
     private final List<Password> listOfPasswords = new ArrayList<>();
     @Column(unique = true)
     private String userName;

@@ -6,6 +6,7 @@ import com.example.megaPassworkSaver.data.repository.AppUserRepositoryZ;
 import com.example.megaPassworkSaver.data.repository.ConfirmationRepository;
 import com.example.megaPassworkSaver.dto.request.AppUserRequest;
 import com.example.megaPassworkSaver.exception.AppUserException;
+import com.example.megaPassworkSaver.service.EmailService;
 import com.example.megaPassworkSaver.service.JustUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 public class JustUserServiceIMPL implements JustUserService {
     private final AppUserRepositoryZ userRepository;
     private final ConfirmationRepository confirmationRepository;
+    private final EmailService emailService;
     @Override
     public AppUser registerUser(AppUser appUser) {
         if (userRepository.existsByEmailAddress(appUser.getEmailAddress())) throw  new AppUserException("account already exists");
@@ -23,6 +25,7 @@ public class JustUserServiceIMPL implements JustUserService {
         Confirmation confirmation = new Confirmation(appUser);
         confirmationRepository.save(confirmation);
         // TODO send email/token to user
+        emailService.sendSimpleMailMessage(appUser.getUsername(), appUser.getEmailAddress(), appUser.getToken());
         return appUser;
     }
 

@@ -31,4 +31,5 @@ public interface AppUserService {
     Page<UnlockPassword> getAllPassword(PageRequestDto pageRequestDto);
     AppUser findAppUserByEmail(String email);
 
+    String deleteAppUserAccountByEmail(String stringEmail);
 }
