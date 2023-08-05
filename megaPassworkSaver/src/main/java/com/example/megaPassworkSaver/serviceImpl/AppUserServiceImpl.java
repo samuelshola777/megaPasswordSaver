@@ -19,6 +19,7 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.Email;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +41,12 @@ public class AppUserServiceImpl implements AppUserService {
       //  passwordVerifier(appUserRequest3.getUnlockPassword());
         AppUser mappedAppUser = mapRequestToAppUser(appUserRequest3);
         emailService.sendSimpleMailMessage(appUserRequest3.getUserName(), appUserRequest3.getEmailAddress(),"you are a goat");
-        return mapAppUserToResponse(appUserRepositoryZ.save(mappedAppUser));
+     try {
+         return mapAppUserToResponse(appUserRepositoryZ.save(mappedAppUser));
+     }catch (DataIntegrityViolationException e){
+         throw new RegistrationException("Email address "+appUserRequest3.getEmailAddress()+" is already or username "+appUserRequest3.getUserName()+" is already");
+     }
+
     }
 
     @Override

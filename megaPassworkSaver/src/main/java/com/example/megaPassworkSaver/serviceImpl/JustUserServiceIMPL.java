@@ -20,7 +20,7 @@ public class JustUserServiceIMPL implements JustUserService {
     @Override
     public AppUser registerUser(AppUser appUser) {
         if (userRepository.existsByEmailAddress(appUser.getEmailAddress())) throw  new AppUserException("account already exists");
-        appUser.setEnabled(false);
+      appUser.setEnabled(false);
          userRepository.save(appUser);
         Confirmation confirmation = new Confirmation(appUser);
         confirmationRepository.save(confirmation);
@@ -33,7 +33,7 @@ public class JustUserServiceIMPL implements JustUserService {
     public Boolean verifyToken(String token) {
         AppUser appUser = userRepository.findByEmailAddress(confirmationRepository.findByTokenC(token).getAppUser().getEmailAddress());
         if (appUser != null) throw new AppUserException("user does nt exi");
-        appUser.setEnabled(true);
+       appUser.setEnabled(true);
        userRepository.save( appUser);
         return Boolean.TRUE;
     }

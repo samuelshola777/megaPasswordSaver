@@ -27,9 +27,9 @@ private final JavaMailSenderImpl mailSenderImpl;
         message.setFrom(fromEmail);
         message.setTo(to);
         message.setText("this is working thank God");
-        mailSenderImpl.send(message);
+      //  mailSenderImpl.send(message);
     }catch (Exception exception) {
-        System.out.println(exception.getMessage());
+        System.out.println("==>> "+exception.getMessage());
         throw new EmailSenderException("Failed to send  mail message");
     }
     }
