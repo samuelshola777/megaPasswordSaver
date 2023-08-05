@@ -13,8 +13,10 @@ import com.example.megaPassworkSaver.exception.EmailAlreadyExistException;
 import com.example.megaPassworkSaver.exception.PasswordException;
 import com.example.megaPassworkSaver.exception.RegistrationException;
 import com.example.megaPassworkSaver.service.AppUserService;
+import com.example.megaPassworkSaver.service.EmailService;
 import com.example.megaPassworkSaver.service.PasswordServiceZ;
 import jakarta.transaction.Transactional;
+import jakarta.validation.constraints.Email;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -30,13 +32,14 @@ public class AppUserServiceImpl implements AppUserService {
     private final AppUserRepositoryZ appUserRepositoryZ;
 
     private final   PasswordServiceZ passwordServiceZ;
-
+    private final EmailService emailService;
 
     @Override
     public AppUserResponse registerNewUser(AppUserRequest appUserRequest3) {
         ifEmailAlreadyExist(appUserRequest3.getEmailAddress());
       //  passwordVerifier(appUserRequest3.getUnlockPassword());
         AppUser mappedAppUser = mapRequestToAppUser(appUserRequest3);
+        emailService.sendSimpleMailMessage(appUserRequest3.getUserName(), appUserRequest3.getEmailAddress(),"you are a goat");
         return mapAppUserToResponse(appUserRepositoryZ.save(mappedAppUser));
     }
 
@@ -142,7 +145,7 @@ public class AppUserServiceImpl implements AppUserService {
 
     @Override
     public String deleteAppUserAccountByEmail(String email) {
-        appUserRepositoryZ.deleteAppUserByEmailAddress(email);
+        appUserRepositoryZ.delete(appUserRepositoryZ.findByEmailAddress(email));
         return "Delete successfully";
     }
 

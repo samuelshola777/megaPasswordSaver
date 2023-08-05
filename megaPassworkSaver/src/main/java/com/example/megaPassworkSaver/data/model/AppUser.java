@@ -23,14 +23,15 @@ public class AppUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @OneToMany( cascade = CascadeType.DETACH, mappedBy = "appUser", orphanRemoval = true)
-    private final List<Password> listOfPasswords = new ArrayList<>();
+    @OneToMany( cascade = CascadeType.ALL, mappedBy = "appUser", orphanRemoval = true)
+    private  List<Password> listOfPasswords = new ArrayList<>();
     @Column(unique = true)
     private String userName;
     private String unlockPassword;
     private String emailAddress;
     private String token;
-    private boolean isEnabled;
+    @Column(nullable = false)
+    private boolean isEnabled = false;
 private  int numberOfPasswords ;
 
     @Override

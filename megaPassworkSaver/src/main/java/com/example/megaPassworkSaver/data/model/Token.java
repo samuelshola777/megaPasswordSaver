@@ -16,7 +16,8 @@ public class Token {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "password")
     private Password password;
     private String token;
     private LocalDateTime generatedAt;

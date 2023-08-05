@@ -20,7 +20,8 @@ public class Password {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "app_user")
     private AppUser appUser;
     private String appUserEmail;
     private String token;

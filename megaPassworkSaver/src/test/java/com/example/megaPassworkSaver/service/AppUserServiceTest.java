@@ -100,7 +100,7 @@ private  AppUserService appUserService;
     }
     @Test
     void testThatAppUserCanBeDeletedByEmail(){
-        appUserService.deleteAppUserAccountByEmail("samuelshola14@gmail.com");
+      assertDoesNotThrow(()->{  appUserService.deleteAppUserAccountByEmail("samuelshola14@gmail.com");});
     }
 
 }
